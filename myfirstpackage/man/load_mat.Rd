@@ -18,3 +18,7 @@ contains the rownames and the subsequent columns are the sample identifiers.
 Any rows with duplicated row names will be dropped with the first one being
 kepted.
 }
+\examples{
+load_mat(x)
+}
+\keyword{matrix}

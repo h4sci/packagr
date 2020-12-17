@@ -6,7 +6,10 @@
 #' kepted.
 #'
 #' @param infile Path to the input file
+#' @keywords matrix
 #' @return A matrix of the infile
+#' @examples
+#' load_mat(x)
 #' @export
 load_mat <- function(infile){
   in.dt <- data.table::fread(infile, header = TRUE)
