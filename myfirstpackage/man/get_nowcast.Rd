@@ -66,5 +66,8 @@ out$lambda_mean <- apply(simplify2array(out$lambda_all), 1:2, mean)
 out$phi_mean <- apply(simplify2array(out$phi_all), 1:2, mean)
 out$Q_mean <- apply(simplify2array(out$Q_all), 1:2, mean)
 out$R_mean <- apply(simplify2array(out$R_all), 1:2, mean)
-out$ncst <- get_nowcast(Xmat = Xmat, s = s, q = q, alpha_0 = alpha_0, P_0 = P_0, inventory = inventory, target = target, flows = flows,  lambda_mean = out$lambda_mean, phi_mean = out$phi_mean, R_mean = out$R_mean, Q_mean = out$Q_mean, const = const)
+out$ncst <- get_nowcast(Xmat = Xmat, s = s, q = q, alpha_0 = alpha_0,
+P_0 = P_0, inventory = inventory, target = target, flows = flows,
+lambda_mean = out$lambda_mean, phi_mean = out$phi_mean, R_mean = out$R_mean,
+Q_mean = out$Q_mean, const = const)
 }

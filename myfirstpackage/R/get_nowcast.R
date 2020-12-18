@@ -18,7 +18,7 @@
 #' @param const A scalar, where const = 1 for model with intercept, const = 0 for model without intercept.
 #'
 #' @return A time series of the target variable including forecast.
-#' @importFrom stats time window ts
+#' @import stats
 #' @importFrom utils tail
 #' @examples
 #' Xmat <- prepare_data(flows = data$flows, stocks = data$stocks, inventory, target = target)
@@ -33,7 +33,10 @@
 #' out$phi_mean <- apply(simplify2array(out$phi_all), 1:2, mean)
 #' out$Q_mean <- apply(simplify2array(out$Q_all), 1:2, mean)
 #' out$R_mean <- apply(simplify2array(out$R_all), 1:2, mean)
-#' out$ncst <- get_nowcast(Xmat = Xmat, s = s, q = q, alpha_0 = alpha_0, P_0 = P_0, inventory = inventory, target = target, flows = flows,  lambda_mean = out$lambda_mean, phi_mean = out$phi_mean, R_mean = out$R_mean, Q_mean = out$Q_mean, const = const)
+#' out$ncst <- get_nowcast(Xmat = Xmat, s = s, q = q, alpha_0 = alpha_0,
+#' P_0 = P_0, inventory = inventory, target = target, flows = flows,
+#' lambda_mean = out$lambda_mean, phi_mean = out$phi_mean, R_mean = out$R_mean,
+#'Q_mean = out$Q_mean, const = const)
 #' @export
 #'
 get_nowcast <- function(Xmat, s, q, alpha_0, P_0, inventory, target, flows, lambda_mean, phi_mean, R_mean, Q_mean, const){

@@ -4,7 +4,7 @@
 \alias{compFstate}
 \title{Construct companion matrix for VAR(p) model}
 \usage{
-compFstate(phi, Q, H, con)
+compFstate(phi, Q, H, con, n, k)
 }
 \arguments{
 \item{phi}{Diagoanl matrix of dimension k x k with vector autoregressive coefficients.}
@@ -14,6 +14,10 @@ compFstate(phi, Q, H, con)
 \item{H}{A matrix of lambadas from Multi-Move Gibbs sampler in companion form.}
 
 \item{con}{A scalar, where con = 1 for model with intercept, con = 0 for model without intercept.}
+
+\item{n}{Number of variables.}
+
+\item{k}{Number of states (number of factors).}
 }
 \value{
 A List with phi, Q, H in companion form.

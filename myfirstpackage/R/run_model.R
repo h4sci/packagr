@@ -12,15 +12,18 @@
 #' @param Ttq Number of high-frequency periods minus lag length for state equation
 #' @param const A scalar, where const = 1 for model with intercept, const = 0 for model without intercept.
 #' @param target Defines the target variable.
+#' @param inventory Inventory of the corresponding data.
+#' @param Xmat A data set containing all the time series.
+#' @param flows A list of time series variable (flow variables).
 #'
 #' @return A list with the mean and quantiles of the parameters, the forecast and the number of burns, draws and saves.
-#' @importFrom stats rnorm
+#' @import stats
 #' @examples
 #'
 #' out <- run_model(yt,k,q,m,n,Tt,Ttq,const,target)
 #' @export
 #'
-run_model <- function(yt,k,q,m,n,Tt,Ttq,const,target){
+run_model <- function(yt,k,q,m,n,Tt,Ttq,const,target,inventory,Xmat,flows){
 
 ###### PRIORS
 

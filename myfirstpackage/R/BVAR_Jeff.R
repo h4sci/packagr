@@ -16,6 +16,22 @@
 #' @importFrom MASS mvrnorm
 #' @importFrom MCMCpack riwish
 #' @examples
+#' load("data_UK.Rda")
+#' Xmat <- prepare_data(flows = data$flows,stocks = data$stocks,inventory,target = target)
+#' yt <- as.matrix(t(Xmat))
+#' Q <- as.matrix(diag(0.1,k))
+#' R <- as.matrix(diag(n)*0.01)
+#' alpha_0 <- matrix(0,m,1)
+#' P_0 <- diag(m)
+#' q <- 1
+#' lambdasim <- matrix(rep(rnorm(n,0,1)*0.1,k), nrow = n, ncol = k, byrow = TRUE)
+#' diag(lambdasim) <- 1
+#' lambdasim[upper.tri(lambdasim)] <- 0
+#' lambda <- lambdasim
+#' Tt <- dim(yt)[2]
+#' phi <- diag(rnorm(k,0,1))
+#' const <- 0
+#' ft <-  multimoveGibbs(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R)
 #' param <- BVAR_Jeff(ft,q,0)
 #' @export
 #'

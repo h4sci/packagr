@@ -10,7 +10,7 @@
 #' @param nu0 shape (degrees of freedom) of IG distribution.
 #' @param s0 Prior for the rate (reciprocal of scale) of IG distribution (1/100=0,01 as benchmark residuals of AR(1) from OLS).
 #' @return Matrix R.
-#' @importFrom stats rgamma
+#' @import stats
 #' @examples
 #' q <- 1
 #' Tt <- dim(yt)[2]

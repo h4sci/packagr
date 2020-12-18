@@ -13,7 +13,6 @@
 #' @param P_0 Diagonal matrix of dimension m (Initial conditions for Kalman filter).
 #' @param R Diagonal matrix of dimension n of idiosyncratic component.
 #' @importFrom MASS mvrnorm
-#' @import Matrix
 #' @return A Vector of factors conditional parameters.
 #' @examples
 #' alpha_0 <- matrix(0,m,1)

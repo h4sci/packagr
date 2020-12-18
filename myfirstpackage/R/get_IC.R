@@ -14,7 +14,8 @@
 #' \item GR_number Optimal number of factors according to Growth Ratio Test.
 #' }
 #' @importFrom zoo na.spline
-#' @importFrom stats princomp screeplot
+#' @import stats
+#' @importFrom grDevices dev.off
 #' @examples
 #' IC <- get_IC(Xmat)
 #' @export
@@ -28,9 +29,8 @@ get_IC <- function(Xmat){
 
   pc <- princomp(Xmat_spline, cor=TRUE)
   summary(pc, loadings=TRUE)
-  #pdf("text/pc.pdf")
-  screeplot(pc, type="lines", main = "Principal Components")
-  dev.off()
+  #screeplot(pc, type="lines", main = "Principal Components")
+  #dev.off()
   kmax <-  10
   kmax = min(kmax,length(pc$sdev)); # Set kmax to ensure a maximum number of possible factors
 

@@ -4,7 +4,7 @@
 \alias{run_model}
 \title{Get nowcast from the bayesian DFM}
 \usage{
-run_model(yt, k, q, m, n, Tt, Ttq, const, target)
+run_model(yt, k, q, m, n, Tt, Ttq, const, target, inventory, Xmat, flows)
 }
 \arguments{
 \item{yt}{A matrix of demeaned and standardized time series data.}
@@ -24,6 +24,12 @@ run_model(yt, k, q, m, n, Tt, Ttq, const, target)
 \item{const}{A scalar, where const = 1 for model with intercept, const = 0 for model without intercept.}
 
 \item{target}{Defines the target variable.}
+
+\item{inventory}{Inventory of the corresponding data.}
+
+\item{Xmat}{A data set containing all the time series.}
+
+\item{flows}{A list of time series variable (flow variables).}
 }
 \value{
 A list with the mean and quantiles of the parameters, the forecast and the number of burns, draws and saves.

@@ -5,7 +5,8 @@
 
 # Install packages
   install.packages(c("devtools", "roxygen2", "testthat", "knitr"))
-  install.packages("git2r") # cretes git reiter in R
+  install.packages("git2r")
+  install.packages("usethis")
 # Create Framework (NAMESPACE, DESCRIPTION,R, myfirstpackage.Rproj)
   devtools::create("myfirstpackage")
 # creates automatically a new project in R
@@ -18,6 +19,9 @@
   use_mit_license("Philipp Kronenberg")
 
 # Add dependencies to package # Defaults to imports
+  #install.packages(c("reshape2", "MASS", "stats", "ggplot2","openxlsx",
+  #                   "MCMCpack","Matrix","dplyr","zoo","tidyr"))
+  
   usethis::use_package("MASS")
   usethis::use_package("stats")
   usethis::use_package("utils")
@@ -25,10 +29,12 @@
   usethis::use_package("openxlsx")
   usethis::use_package("reshape2")
   usethis::use_package("MCMCpack")
-  #usethis::use_package("Matrix")
+  usethis::use_package("Matrix")
   usethis::use_package("dplyr")
   usethis::use_package("zoo")
   usethis::use_package("tidyr")
+  usethis::use_package("grDevices")
+
   #> Adding dplyr to Imports
   #> Refer to functions with dplyr::fun()
   #usethis::use_package("data.table", "Suggests")
@@ -83,6 +89,9 @@
   library(tidyverse)
   library(fs)
   
+  load_all() # or
+  pkgload::load_all()
+  
   # make basic check whether the package works
   check() # includes the command test() that checks also your own created tests
   
@@ -118,4 +127,5 @@
 # package down
   
   
-  
+  # Questions:
+  # Do I need to install Rtools40? And how do I install it?

@@ -8,7 +8,7 @@
 #' @param target Defines the target variable.
 #' @inheritParams create_inventory
 #' @return A dataframe
-#' @importFrom stats time window ts
+#' @import stats
 #' @importFrom dplyr left_join
 #' @importFrom zoo na.trim
 #' @examples

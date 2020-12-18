@@ -15,6 +15,7 @@
 #' @param stocks A list of time series variable (stock variables).
 #'
 #' @return A table
+#' @import stats
 #' @examples
 #' inventory <- create_inventory(flows = data$flows, stocks = data$stocks)
 #' @export
