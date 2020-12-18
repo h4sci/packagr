@@ -1,21 +1,25 @@
+#' Find optimal number of factors in a factor model.
+#'
+#' \code{create_inventory} constructs the Eigenvalue Ratio Test and Growth Ratio Test according to Ahn, Horenstein (2013), page 1207
+#'
+#' The function calculates the principal components of the data set. It creates a screeplot of the principal components.
+#' Further, it calculates the optimal number of factors of the factor model according to the Eigenvalue Ratio
+#' Test and Growth Ratio Test of Ahn, Horenstein (2013), page 1207. The maximam number of factors is set to 10.
+#'
+#' @param Xmat A data set containing all the time series.
+#'
+#' @return A List:
+#' \itemize{
+#' \item ER_number Optimal number of factors according to Eigenvalue Ratio Test.
+#' \item GR_number Optimal number of factors according to Growth Ratio Test.
+#' }
+#' @importFrom zoo na.spline
+#' @importFrom stats princomp screeplot
+#' @examples
+#' IC <- get_IC(Xmat)
+#' @export
+#'
 get_IC <- function(Xmat){
-  #' Find optimal number of factors in a factor model.
-  #'
-  #' \code{create_inventory} constructs the Eigenvalue Ratio Test and Growth Ratio Test according to Ahn, Horenstein (2013), page 1207
-  #'
-  #' The function calculates the principal components of the data set. It creates a screeplot of the principal components.
-  #' Further, it calculates the optimal number of factors of the factor model according to the Eigenvalue Ratio
-  #' Test and Growth Ratio Test of Ahn, Horenstein (2013), page 1207. The maximam number of factors is set to 10.
-  #'
-  #' @param Xmat A data set containing all the time series.
-  #' @return A List:
-  #' \itemize{
-  #' \item ER_number Optimal number of factors according to Eigenvalue Ratio Test.
-  #' \item GR_number Optimal number of factors according to Growth Ratio Test.
-  #' }
-  #' @examples
-  #' IC <- get_IC(Xmat)
-  #' @export
 
   IC <- list()
   #  See Ahn, Horenstein (2013) - Eigenvalue Ratio Test for the Number of Factors, page 1207

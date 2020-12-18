@@ -1,18 +1,21 @@
-
+#' Prepare time series data for usage
+#'
+#' \code{prepare_data} transforms the time series into a usable format for time series analysis.
+#'
+#' The function conducts a normalization by demeaning and dividing by the standard deviation of the individual time series.
+#'
+#' @param inventory Inventory of the corresponding data.
+#' @param target Defines the target variable.
+#' @inheritParams create_inventory
+#' @return A dataframe
+#' @importFrom stats time window ts
+#' @importFrom dplyr left_join
+#' @importFrom zoo na.trim
+#' @examples
+#' Xmat <- prepare_data(flows = data$flows, stocks = data$stocks, inventory, target = target)
+#' @export
+#'
 prepare_data <- function(flows, stocks, inventory, target){
-  #' Prepare time series data for usage
-  #'
-  #' \code{prepare_data} transforms the time series into a usable format for time series analysis.
-  #'
-  #' The function conducts a normalization by demeaning and dividing by the standard deviation of the individual time series.
-  #'
-  #' @param inventory Inventory of the corresponding data.
-  #' @param target Defines the target variable.
-  #' @inheritParams create_inventory
-  #' @return A dataframe
-  #' @examples
-  #' Xmat <- prepare_data(flows = data$flows, stocks = data$stocks, inventory, target = target)
-  #' @export
 
   data <- c(flows, stocks)
 

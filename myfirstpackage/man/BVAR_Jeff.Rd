@@ -2,7 +2,7 @@
 % Please edit documentation in R/BVAR_Jeff.R
 \name{BVAR_Jeff}
 \alias{BVAR_Jeff}
-\title{Draws posterof of a VAR(p) Model with non-informative prior}
+\title{Draws posterior of VAR(p) Model with non-informative prior}
 \usage{
 BVAR_Jeff(Yts, p, const)
 }

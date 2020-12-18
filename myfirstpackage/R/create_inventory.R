@@ -1,23 +1,25 @@
+#' Create an inventory for time series
+#'
+#' \code{create_inventory} constructs an inventory. It calculates the mean,
+#' standard deviation of the various series and outputs its frequency, type, and name in a table.
+#'
+#' The function reads a list of variables that are of class time series. For every list the function looks for the following things:
+#' \itemize{
+#' \item name()
+#' \item frequency()
+#' \item mean()
+#' \item sd()
+#' }
+#'
+#' @param flows A list of time series variable (flow variables).
+#' @param stocks A list of time series variable (stock variables).
+#'
+#' @return A table
+#' @examples
+#' inventory <- create_inventory(flows = data$flows, stocks = data$stocks)
+#' @export
+#'
 create_inventory <- function(flows, stocks){
-  #' Create an inventory for time series
-  #'
-  #' \code{create_inventory} constructs an inventory. It calculates the mean,
-  #' standard deviation of the various series and outputs its frequency, type, and name in a table.
-  #'
-  #' The function reads a list of variables that are of class time series. For every list the function looks for the following things:
-  #' \itemize{
-  #' \item name()
-  #' \item frequency()
-  #' \item mean()
-  #' \item sd()
-  #' }
-  #'
-  #' @param flows A list of time series variable (flow variables).
-  #' @param stocks A list of time series variable (stock variables).
-  #' @return A table
-  #' @examples
-  #' inventory <- create_inventory(flows = data$flows, stocks = data$stocks)
-  #' @export
 
   inventory <- rbind(data.frame("key" = as.character(names(flows)),
                                 "type" = factor("flow", levels = c("stock","flow")),

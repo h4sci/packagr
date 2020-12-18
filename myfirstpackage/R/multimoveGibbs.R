@@ -1,41 +1,42 @@
-
+#' Draws factor conditional on parameters
+#'
+#' The Multi-Move Gibbs sampler applies the kalman filter by forward and backwards filtering.
+#'
+#' @inheritParams compFstate
+#' @param phi Diagoanl matrix of dimension k x k with vector autoregressive coefficients.
+#' @param lambda A vector of dimension n x k of the factor loadings.
+#' @param const A scalar, where const = 1 for model with intercept, const = 0 for model without intercept.
+#' @param yt A matrix of demeaned and standardized time series data.
+#' @param Tt Number of high-frequency periods.
+#' @param q lag length for state equation (adjust starting value of phi accordingly).
+#' @param alpha_0 Vector of dimension m x 1 (Initial conditions for Kalman filter).
+#' @param P_0 Diagonal matrix of dimension m (Initial conditions for Kalman filter).
+#' @param R Diagonal matrix of dimension n of idiosyncratic component.
+#' @importFrom MASS mvrnorm
+#' @import Matrix
+#' @return A Vector of factors conditional parameters.
+#' @examples
+#' alpha_0 <- matrix(0,m,1)
+#'
+#' P_0 <- diag(m)
+#'
+#' q <- 1
+#'
+#' yt <- as.matrix(t(Xmat))
+#'
+#' Tt <- dim(yt)[2]
+#'
+#' R <- as.matrix(diag(n)*0.01)
+#'
+#' lambdasim <- matrix(rep(rnorm(n,0,1)*0.1,k), nrow = n, ncol = k, byrow = TRUE)
+#' diag(lambdasim) <- 1
+#' lambdasim[upper.tri(lambdasim)] <- 0
+#' lambda <- lambdasim
+#'
+#' matcomp <- compFstate(phi,Q,lambda,const)
+#' @export
+#'
 multimoveGibbs <- function(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R){
-  #' Draws factor conditional on parameters
-  #'
-  #' The Multi-Move Gibbs sampler applies the kalman filter by forward and backwards filtering.
-  #'
-  #' @inheritParams compFstate
-  #' @param phi Diagoanl matrix of dimension k x k with vector autoregressive coefficients.
-  #' @param lambda A vector of dimension n x k of the factor loadings.
-  #' @param const A scalar, where const = 1 for model with intercept, const = 0 for model without intercept.
-  #' @param yt A matrix of demeaned and standardized time series data.
-  #' @param Tt Number of high-frequency periods.
-  #' @param q lag length for state equation (adjust starting value of phi accordingly).
-  #' @param alpha_0 Vector of dimension m x 1 (Initial conditions for Kalman filter).
-  #' @param P_0 Diagonal matrix of dimension m (Initial conditions for Kalman filter).
-  #' @param R Diagonal matrix of dimension n of idiosyncratic component.
-  #'
-  #' @return A Vector of factors conditional parameters.
-  #' @examples
-  #' alpha_0 <- matrix(0,m,1)
-  #'
-  #' P_0 <- diag(m)
-  #'
-  #' q <- 1
-  #'
-  #' yt <- as.matrix(t(Xmat))
-  #'
-  #' Tt <- dim(yt)[2]
-  #'
-  #' R <- as.matrix(diag(n)*0.01)
-  #'
-  #' lambdasim <- matrix(rep(rnorm(n,0,1)*0.1,k), nrow = n, ncol = k, byrow = TRUE)
-  #' diag(lambdasim) <- 1
-  #' lambdasim[upper.tri(lambdasim)] <- 0
-  #' lambda <- lambdasim
-  #'
-  #' matcomp <- compFstate(phi,Q,lambda,const)
-  #' @export
 
   k <- dim(Q)[1]
 

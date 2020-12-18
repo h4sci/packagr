@@ -1,23 +1,25 @@
-
+#' Draws posterior of VAR(p) Model with non-informative prior
+#'
+#' \code{create_inventory} constructs companion matrix for VAR(p) model.
+#'
+#' This function draws from the posterior of a VAR(p) model with non-informatibve prior
+#'
+#' @param Yts n x T matrix of data.
+#' @param p the lag lenght of the VAR.
+#' @param const A scalar, where const = 1 for model with intercept, const = 0 for model without intercept.
+#'
+#' @return A List with:
+#' \itemize{
+#' \item betar_all n x np+1 x R-burn matrices of coefficients.
+#' \item Sigr_all n x n x R-burn matrices of variance covariance matrices.
+#' }
+#' @importFrom MASS mvrnorm
+#' @importFrom MCMCpack riwish
+#' @examples
+#' param <- BVAR_Jeff(ft,q,0)
+#' @export
+#'
 BVAR_Jeff <- function(Yts,p,const){
-  #' Draws posterof of a VAR(p) Model with non-informative prior
-  #'
-  #' \code{create_inventory} constructs companion matrix for VAR(p) model.
-  #'
-  #' This function draws from the posterior of a VAR(p) model with non-informatibve prior
-  #'
-  #' @param Yts n x T matrix of data.
-  #' @param p the lag lenght of the VAR.
-  #' @param const A scalar, where const = 1 for model with intercept, const = 0 for model without intercept.
-  #' @return A List with:
-  #' \itemize{
-  #' \item betar_all n x np+1 x R-burn matrices of coefficients.
-  #' \item Sigr_all n x n x R-burn matrices of variance covariance matrices.
-  #' }
-  #' @examples
-  #' param <- BVAR_Jeff(ft,q,0)
-  #' @export
-  #'
 
   # Number of variables
   n <- dim(Yts)[1]
@@ -35,7 +37,7 @@ BVAR_Jeff <- function(Yts,p,const){
   }else{
     Xt <-  lapply(seq(p+1,Tt),function(tx){t(c(sapply(seq(1,p),function(x){t(Yts[,tx-x])})))})
   }
-  # Stack obeservations over t
+  # Stack observations over t
   X <- Reduce(rbind, Xt)
 
 
