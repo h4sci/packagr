@@ -56,6 +56,10 @@
   # How to call this data:
   #system.file("extdata", "x.R", package = "myfirstpackage")
   
+  # Create basic read me file for git
+  use_readme_rmd()
+  
+  
 # Create vignette rmarkdown file
   # installing/loading the package:
   if(!require(installr)) { install.packages("installr"); require(installr)} #load / install+load installr
@@ -74,13 +78,17 @@
   # or
   devtools::load_all() # replaces installation, and attachement of package
   # remove.packages(vctrs)
-  library("myfirstpackage")
+  
   # Install a package from github:
   # devtools::install_github("yourusername/myfirstpackage")
   
   # Install from github:
   # devtools::install_github("yourusername/myfirstpackage")
 
+
+# To use when revisiong the package ---------------------------------------
+  
+  
   library(devtools)
   packageVersion("devtools")
   library(roxygen2)
@@ -89,19 +97,25 @@
   library(tidyverse)
   library(fs)
   
-  load_all() # or
-  pkgload::load_all()
+  devtools::document()
   
-  # make basic check whether the package works
-  check() # includes the command test() that checks also your own created tests
+  load_all()
   
   # Test your functions
   use_testthat() # Creates test folder
   use_test("get_IC") # creates test file for single function
   test()
   
-  # Create basic read me file for git
-  use_readme_rmd()
+  # make basic check whether the package works
+  check() # includes the command test() that checks also your own created tests
+  
+  library("BayesianDFM")
+  
+  # Create package including Create/update Vignette
+  devtools::build()
+  
+  
+  
   # Render your read me file
   build_readme()
   
@@ -114,14 +128,14 @@
   # Add descriptions to functions
   # Add dependencies
   # Add sample data
+  # Create read me content for git
+  # Add correct contact information into description
+  # Add at all functions in the functions the package name and :: or importFrom nameofpackage nameoffunction
+  # Creating Vignette content
   
   #ToDo
-  # Create read me content for git
-# Add correct contact information into description
-# Add at all functions in the functions the package name and :: or importFrom nameofpackage nameoffunction
-# Creating Vignette content
-# Creating more functions and descriptions
-# Change metadata
+  
+# Correct read in of data files
 # Add automated testing (github actions)
 # Create a Github pages website for the package
 # package down

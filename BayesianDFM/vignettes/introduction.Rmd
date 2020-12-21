@@ -1,0 +1,157 @@
+---
+title: "Introduction BayesianDFM"
+output: rmarkdown::html_vignette
+bibliography: library.bib
+vignette: >
+  %\VignetteIndexEntry{Introduction BayesianDFM}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(BayesianDFM)
+```
+
+The myfirstpackage package provides relevant functions for running a Bayesian Dynamic Factor Model.
+
+## Functions
+
+The following functions are contained in the package:
+
+* BVAR_Jeff
+* compFstate
+* drawLam
+* drawSig
+* get_IC
+* get_nowcast
+* multimoveGibbs
+* prepare_data
+* run_model
+
+For further information about the functions, check out the function descriptions.
+
+
+## Model
+
+### Dynamic Factor Model
+
+The model can be estimated by obtaining the state-space representation of the dynamic factor model such that the Kalman filter can be applied to perform the projections. 
+
+Let $\textbf{x}_t=(x_{1,t},...,x_{n,t})'$ denote the data set of observable time series, whereas $t = 1, ..., T$ is the time index and $n$ is the number of variables. The variables in the data set have been transformed to satisfy the condition of stationarity (see Section Data for more details about the applied transformations and the used time series). We assume $\textbf{x}_t$ follows the following factor model representation. The measurement equation is given by
+
+\begin{align}
+	\label{eq:meas1}
+	\textbf{x}_t &= \mu + \boldsymbol{\lambda} f_t + \boldsymbol{\lambda}  f_{t-1} + ... + \boldsymbol{\lambda} f_{t-s} + \boldsymbol{\epsilon}_t, \qquad \epsilon_t \sim \mathcal{N}\left(\textbf{0}, \textbf{R}\right),
+\end{align}
+where $\textbf{x}_t$ is the $n$-dimensional vector of observables in period $t$. $\boldsymbol{\mu}$ is a n-dimensional mean vector of those observables. $\textbf{f}_t$ is a \textit{kx1}-dimensional matrix of latent factors at time $t$ where $k$ is the number of factors. $\boldsymbol{\lambda}$ is an $nxk$-dimensional matrix that contains the time-invariant factor loadings. $\boldsymbol{\epsilon}_t$ is a n-dimensional vector of idiosyncratic components following a normal distribution with mean zero and variance-covariance matrix $\textbf{R}$. Since the dynamic factors account for the majority of the cross-correlation, it can be assumed that the covariance matrix $\textbf{R}$ is diagonal. For the estimation, the vector $\textbf{x}_t$ is demeaned and normalized such that the vector $\boldsymbol{\mu}$ drops out of the equation. As a consequence, the factors are assumed to be mean zero as well.
+
+The transition equation describes the law of motion of the factors, which follows a vector autoregressive (VAR) process of order $q$ and is defined as
+\begin{align}
+\label{eq:trans1}
+    f_t &= \boldsymbol{\phi}_1 f_{t-1} + ... + \boldsymbol{\phi}_q f_{t-q} + e_t, \qquad e_t \sim \mathcal{N}\left(\textbf{0},\textbf{Q}\right)
+\end{align}
+where the matrices $\boldsymbol{\phi}_q$ are the autoregressive coefficents and $q$ indicates the number of lags. The error term $\textbf{e}_t$ follows a normal distribution with mean zero and variance-covariance matrix $\textbf{Q}$.
+
+
+Hence, the parameters of the model to be estimated are the fundamental dynamic factors $\textbf{f}_t, ..., \textbf{f}_k$ and the parameters of $\boldsymbol{\lambda}, \boldsymbol{\phi}_1, ..., \boldsymbol{\phi}_q$, $\textbf{R}$, and $\textbf{Q}$.
+
+### Identification
+
+In order to identify the factors uniquely, restrictions have to be placed on the parameters. Following [@Bai2015], there are $k^2$ restrictions necessary to fully identify the system of a dynamic factor model. As suggested by [@Geweke1996], a lower-triangular matrix is imposed on the first $k x k$ block of the factor loadings matrix $\boldsymbol{\lambda}$ which solves the rotational indeterminacy while an identity matrix is imposed on its diagonal to solve the scale and sign indeterminacy inherent in dynamic factor models.
+
+
+### Estimation
+
+The joint posterior distribution is simulated using multi-move Gibbs sampling following [@CarterKohn1994] and [@Fruehwirth-Schnatter1994]. A set of starting values is randomly generated from normal distributions to ensure robust convergence of the sampler. In the used notation, priors are underlined, while estimated posteriors from data are labelled with upper bars. The model parameters of $\boldsymbol{\lambda}, \boldsymbol{\phi}_1, ..., \boldsymbol{\phi}_q$, $\textbf{R}$, and  $\textbf{Q}$ are estimated conditional on the factors $\textbf{f}_t$, and the data $\textbf{x}_t$. In a first step, the factors $\textbf{f}_t$ are drawn conditional on the priors of the parameters by forward filtering and backward sampling of the Kalman filter (see [@harvey1990forecasting] for details). Next, conditional on the factors, $\textbf{Q}$ is drawn from an Inverse-Wishart distribution:
+
+\begin{align}
+	\textbf{Q} \sim \mathcal{IW}\left(\boldsymbol{\bar{\nu}}, \boldsymbol{\bar{s}}\right) \quad \text{where} \quad \boldsymbol{\bar{\nu}} &= T-q\\ 
+	\boldsymbol{\bar{s}} &= \sum_{t=1}^T \left(\textbf{y}_t - \textbf{x}_t \boldsymbol{\bar{\beta}} \right)\left(\textbf{y}_t - \textbf{x}_t \boldsymbol{\bar{\beta}} \right)',
+\end{align}
+
+
+ and $\boldsymbol{\phi}_1$, $...$, $\boldsymbol{\phi}_q$ are drawn from a multivariate normal distribution using a non-informative prior, so called Jeffreys prior, defined as 
+
+\begin{align}
+	\boldsymbol{\phi} \sim \mathcal{N}\left(\boldsymbol{\bar{\beta}}, \textbf{Q} \otimes \left(\boldsymbol{X'X}\right)^{-1} \right) \quad \text{where} \quad \boldsymbol{\bar{\beta}} &= \left(\boldsymbol{X'X}\right)^{-1}\boldsymbol{X'Y},
+\end{align}
+
+where $\textbf{Y}$ and $\textbf{X}$ as well as $\textbf{y}_t$ and $\textbf{x}_t$ are the dependent respectively the independent variables from the companion form of the VAR(q) process. Moreover, conditional on the factors, $\boldsymbol{\lambda}$ is drawn from a normal distribution, defined as
+
+\begin{align}
+	\boldsymbol{\lambda} \sim \mathcal{N}\left(\boldsymbol{D_{\lambda}}\boldsymbol{d_{\lambda}}, \boldsymbol{D_{\lambda}} \right) \quad \text{where} \quad \boldsymbol{D_{\lambda}} &= \frac{\left(f_tf_t'\right)^{-1}}{\textbf{R}} + \textbf{V}_{\lambda}^{-1},\\
+	\boldsymbol{d_{\lambda}} &= \frac{f_ty_t}{\textbf{R}} + \textbf{V}_{\lambda}*\boldsymbol{\underline{\lambda}},
+\end{align}
+
+ where $\textbf{V}_{\lambda}$ is the $k x k$ variance-covariance matrix of $\boldsymbol{\lambda}$ and is set to an identity matrix and the prior mean $\boldsymbol{\underline{\lambda}}$ is set to zero. Finally, $\textbf{R}$ is drawn from an Inverse-Gamma distribution, defined as
+
+\begin{align}
+	\textbf{R} \sim \mathcal{IG}\left(\boldsymbol{\bar{\nu}}, \boldsymbol{\bar{s}}\right) \quad \text{where} \quad \boldsymbol{\bar{\nu}} &= \frac{Tp}{2} + \underline{\nu} \\ 
+	\boldsymbol{\bar{s}} &= \frac{1}{\underline{s}}+ \frac{1}{2} \left(\textbf{y}_t - \boldsymbol{\lambda}f_t \right)\left(\textbf{y}_t - \boldsymbol{\lambda}f_t \right)',
+\end{align}
+
+It can be assumed that the dynamic factor accounts for the majority of the cross-correlation in the data. For this reason, $\textbf{R}$ is assumed to be diagonal. Therefore, the diagonal elements of the covariance matrix $\textbf{R}$ are drawn equation-by-equation from the Inverse-Gamma distribution. 
+
+
+The number of lags in the measurement equation can be chosen. For the number of lags in the VAR-process, q can be defined. For the number of factors an approximated range can be assessed by applying the eigenvalue ratio and the growth ratio test as proposed by [@AhnHorenstein2013] since it is an simple method to limit the possible range of efficient number of factors where no in-sample evaluation is necessary. 
+
+
+## Usage
+
+Load and prepare the input data
+
+```{r, eval = FALSE}
+load("data_UK.Rda")
+
+target <- c("UKGDPM.YQ") # Define target variable
+
+# De-mean & standardize data and bring variables with different frequency in one matrix
+Xmat <- prepare_data(flows = data$flows,
+                     stocks = data$stocks,
+                     inventory,
+                     target = target)
+
+yt <- as.matrix(t(Xmat))
+
+```
+
+Make a in-sample evaluation of the optimal number of factors
+
+```{r, eval = FALSE}
+IC <- get_IC(Xmat) # Check information criteria
+
+```
+
+Define the parameters for the model
+
+```{r, eval = FALSE}
+k <- 2 # number of states (number of factors)
+
+q <- 1 # lag length for state equation (adjust starting value of phi accordingly)
+m <- k*q
+
+n <- dim(yt)[1] # Number of variables
+Tt <- dim(yt)[2] # Number of high-frequency periods
+Ttq <- Tt-q
+const <- 0 # choose constant in the state equation (we choose no constant)
+
+```
+
+Having all the parameters, run the model
+
+```{r, eval = FALSE}
+out <- run_model(yt,k,q,m,n,Tt,Ttq,const,target)
+
+```
+
+
+## References
+
+

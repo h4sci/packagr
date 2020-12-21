@@ -1,5 +1,5 @@
-Package: myfirstpackage
-Title: Estimation of a Bayesian VAR model
+Package: BayesianDFM
+Title: Estimation of a Bayesian Dynamic Factor Model
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Philipp",
@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "kronenberg@kof.ethz.ch",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: This is a package with the basic function to run a Bayesian VAR model.
+Description: This is a package with the basic function to run a Bayesian DFM.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
