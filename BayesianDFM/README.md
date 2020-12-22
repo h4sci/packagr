@@ -27,6 +27,7 @@ This is a basic example which shows you how to solve a common problem:
 Load and prepare the input data
 
 ``` r
+
 load("data_UK.Rda")
 
 target <- c("UKGDPM.YQ") # Define target variable

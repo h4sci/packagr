@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 library(BayesianDFM)
 ```
 
-The myfirstpackage package provides relevant functions for running a Bayesian Dynamic Factor Model.
+The BayesianDFM package provides relevant functions for running a Bayesian Dynamic Factor Model.
 
 ## Functions
 
