@@ -108,7 +108,8 @@
   
   # make basic check whether the package works
   check() # includes the command test() that checks also your own created tests
-  
+  # devtools::check_man() # if problems with documentation instead of always using check
+  # devtools::run_examples() # if problems with examples ...
   library("BayesianDFM")
   
   # Create package including Create/update Vignette
@@ -119,6 +120,10 @@
   # Render your read me file
   build_readme()
   
+  
+  # install the package from git
+  install.packages("devtools")
+  devtools::install_github("philippkronenberg/BayesianDFM")
   
 # Next Steps --------------------------------------------------------------
 
