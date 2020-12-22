@@ -7,7 +7,7 @@
 
 <!-- badges: end -->
 
-The myfirstpackage package provides relevant functions for running a
+The BayesianDFM package provides relevant functions for running a
 Bayesian Dynamic Factor Model.
 
 ## Installation
@@ -19,6 +19,23 @@ You can install the development version from
 
 devtools::install_github("h4sci/packagr")
 ```
+
+## Functions
+
+The following functions are contained in the package:
+
+  - BVAR\_Jeff
+  - compFstate
+  - drawLam
+  - drawSig
+  - get\_IC
+  - get\_nowcast
+  - multimoveGibbs
+  - prepare\_data
+  - run\_model
+
+For further information about the functions, check out the function
+descriptions.
 
 ## Example
 

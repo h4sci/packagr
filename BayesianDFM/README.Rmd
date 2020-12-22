@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The myfirstpackage package provides relevant functions for running a Bayesian Dynamic Factor Model.
+The BayesianDFM package provides relevant functions for running a Bayesian Dynamic Factor Model.
 
 ## Installation
 
@@ -28,6 +28,26 @@ You can install the development version from [GitHub](https://github.com/) with:
 
 devtools::install_github("h4sci/packagr")
 ```
+
+
+## Functions
+
+The following functions are contained in the package:
+
+* BVAR_Jeff
+* compFstate
+* drawLam
+* drawSig
+* get_IC
+* get_nowcast
+* multimoveGibbs
+* prepare_data
+* run_model
+
+For further information about the functions, check out the function descriptions.
+
+
+
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
