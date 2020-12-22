@@ -12,6 +12,8 @@
 #' @return Matrix R.
 #' @import stats
 #' @examples
+#' yt <- as.matrix(t(Xmat))
+#' k <- 2
 #' q <- 1
 #' Tt <- dim(yt)[2]
 #' Ttq <- Tt-q

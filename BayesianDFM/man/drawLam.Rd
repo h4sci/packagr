@@ -27,6 +27,7 @@ function that allows to draw from posterior of factor loadings.
 The function conducts a normalization by demeaning and dividing by the standard deviation of the individual time series.
 }
 \examples{
+k <- 2
 lam0 <- matrix(0,k,1)
 V_lam <- diag(k)
 }

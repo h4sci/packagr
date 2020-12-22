@@ -27,14 +27,15 @@ A List with:
 This function draws from the posterior of a VAR(p) model with non-informatibve prior
 }
 \examples{
-load("data_UK.Rda")
-Xmat <- prepare_data(flows = data$flows,stocks = data$stocks,inventory,target = target)
 yt <- as.matrix(t(Xmat))
+k <- 2
+n <- dim(yt)[1]
+q <- 1
+m <- k*q
 Q <- as.matrix(diag(0.1,k))
 R <- as.matrix(diag(n)*0.01)
 alpha_0 <- matrix(0,m,1)
 P_0 <- diag(m)
-q <- 1
 lambdasim <- matrix(rep(rnorm(n,0,1)*0.1,k), nrow = n, ncol = k, byrow = TRUE)
 diag(lambdasim) <- 1
 lambdasim[upper.tri(lambdasim)] <- 0

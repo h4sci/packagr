@@ -15,23 +15,22 @@
 #' @importFrom MASS mvrnorm
 #' @return A Vector of factors conditional parameters.
 #' @examples
-#' alpha_0 <- matrix(0,m,1)
-#'
-#' P_0 <- diag(m)
-#'
 #' q <- 1
-#'
 #' yt <- as.matrix(t(Xmat))
-#'
+#' n <- dim(yt)[1]
 #' Tt <- dim(yt)[2]
-#'
+#' k <- 2
+#' m <- k*q
+#' alpha_0 <- matrix(0,m,1)
+#' P_0 <- diag(m)
+#' const <- 0
 #' R <- as.matrix(diag(n)*0.01)
-#'
+#' phi <- diag(rnorm(k,0,1))
 #' lambdasim <- matrix(rep(rnorm(n,0,1)*0.1,k), nrow = n, ncol = k, byrow = TRUE)
 #' diag(lambdasim) <- 1
 #' lambdasim[upper.tri(lambdasim)] <- 0
 #' lambda <- lambdasim
-#'
+#' Q <- as.matrix(diag(0.1,k))
 #' matcomp <- compFstate(phi,Q,lambda,const)
 #' @export
 #'

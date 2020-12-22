@@ -1,5 +1,5 @@
 
-cat("\014") 
+cat("\014")
 rm(list = ls())
 
 # NOTES -------------------------------------------------------------------
@@ -9,7 +9,7 @@ rm(list = ls())
 # All the functions are in functions_dfm_UK.R
 
 
-#Estimate a dynamic factor model 
+#Estimate a dynamic factor model
 #Model: y(i,t) = lambda(i) f(t) + epsilon(i,t), with epsilon(i,t) ~ N(0,R)
 #f(t) = phi_1 f(t-1) + ... + phi_q f(t-q) + nu(t), with nu(t) ~ N(0,Q)
 
@@ -75,7 +75,7 @@ if(plots == T){
             plot.type="single")
   }
   par(mfrow = c(1,1))
-  
+
 }
 dev.off()
 
@@ -103,7 +103,7 @@ set.seed(111)
 
 # RUN ESTIMATION ----------------------------------------------------------
 
-out <- run_model(yt,k,q,m,n,Tt,Ttq,const,target)
+out <- run_model(yt,k,q,m,n,Tt,Ttq,const,target,inventory)
 
 
 # Evaluation --------------------------------------------------------------

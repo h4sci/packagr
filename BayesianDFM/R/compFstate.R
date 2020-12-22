@@ -13,6 +13,16 @@
 #'
 #' @return A List with phi, Q, H in companion form.
 #' @examples
+#' yt <- as.matrix(t(Xmat))
+#' k <- 2
+#' n <- dim(yt)[1]
+#' lambdasim <- matrix(rep(rnorm(n,0,1)*0.1,k), nrow = n, ncol = k, byrow = TRUE)
+#' diag(lambdasim) <- 1
+#' lambdasim[upper.tri(lambdasim)] <- 0
+#' lambda <- lambdasim
+#' phi <- diag(rnorm(k,0,1))
+#' Q <- as.matrix(diag(0.1,k))
+#' const <- 0
 #' matcomp <- compFstate(phi,Q,lambda,const)
 #' @export
 #'

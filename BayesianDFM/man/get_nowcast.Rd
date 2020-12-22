@@ -54,9 +54,13 @@ A time series of the target variable including forecast.
 function  extends the data matrix by the forecasting period, draw extended factor conditional on posterior parameters and makes forecast.
 }
 \examples{
-Xmat <- prepare_data(flows = data$flows, stocks = data$stocks, inventory, target = target)
-s <- 2*(k - 1)
+yt <- as.matrix(t(Xmat))
+k <- 2
+n <- dim(yt)[1]
 q <- 1
+const <- 0
+m <- k*q
+s <- 2*(k - 1)
 alpha_0 <- matrix(0,m,1)
 P_0 <- diag(m)
 inventory <- create_inventory(flows = data$flows, stocks = data$stocks)

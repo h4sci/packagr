@@ -26,6 +26,8 @@ Matrix R.
 function  draws variance of idiosyncratic components from inverse gamma distribution.
 }
 \examples{
+yt <- as.matrix(t(Xmat))
+k <- 2
 q <- 1
 Tt <- dim(yt)[2]
 Ttq <- Tt-q

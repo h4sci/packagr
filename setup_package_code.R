@@ -34,6 +34,7 @@
   usethis::use_package("zoo")
   usethis::use_package("tidyr")
   usethis::use_package("grDevices")
+  
 
   #> Adding dplyr to Imports
   #> Refer to functions with dplyr::fun()
@@ -59,6 +60,8 @@
   # Create basic read me file for git
   use_readme_rmd()
   
+  # set up data-raw folder
+  usethis::use_data_raw()
   
 # Create vignette rmarkdown file
   # installing/loading the package:
@@ -101,6 +104,8 @@
   
   load_all()
   
+  devtools::run_examples() # if problems with examples ...
+  
   # Test your functions
   use_testthat() # Creates test folder
   use_test("get_IC") # creates test file for single function
@@ -109,7 +114,7 @@
   # make basic check whether the package works
   check() # includes the command test() that checks also your own created tests
   # devtools::check_man() # if problems with documentation instead of always using check
-  # devtools::run_examples() # if problems with examples ...
+  
   library("BayesianDFM")
   
   # Create package including Create/update Vignette
@@ -125,6 +130,24 @@
   install.packages("devtools")
   devtools::install_github("philippkronenberg/BayesianDFM")
   
+  
+  # create correct rda files of output data
+  #use_data(dat_final,data,inventory,metadata)
+  
+
+# Open Issues -------------------------------------------------------------
+
+# Warnings:
+  #> checking data for ASCII and uncompressed saves ... OK
+  #WARNING
+  #‘qpdf’ is needed for checks on size reduction of PDFs
+  
+# Solution:
+  # Install Rtools (is not available as a package for R 3.6, but can be downloaded from website (Rtools40))
+  
+  # Questions:
+  # How do I install it in the package(since it is not a regualr package)?
+  
 # Next Steps --------------------------------------------------------------
 
   #Done
@@ -137,14 +160,12 @@
   # Add correct contact information into description
   # Add at all functions in the functions the package name and :: or importFrom nameofpackage nameoffunction
   # Creating Vignette content
+  # Correct read in of data files
   
   #ToDo
   
-# Correct read in of data files
 # Add automated testing (github actions)
 # Create a Github pages website for the package
 # package down
   
   
-  # Questions:
-  # Do I need to install Rtools40? And how do I install it?

@@ -13,6 +13,7 @@
 #' @return Element of a vector, coefficient of lambda.
 #' @importFrom MASS mvrnorm
 #' @examples
+#' k <- 2
 #' lam0 <- matrix(0,k,1)
 #' V_lam <- diag(k)
 #' @export

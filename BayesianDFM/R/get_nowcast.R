@@ -21,9 +21,13 @@
 #' @import stats
 #' @importFrom utils tail
 #' @examples
-#' Xmat <- prepare_data(flows = data$flows, stocks = data$stocks, inventory, target = target)
-#' s <- 2*(k - 1)
+#' yt <- as.matrix(t(Xmat))
+#' k <- 2
+#' n <- dim(yt)[1]
 #' q <- 1
+#' const <- 0
+#' m <- k*q
+#' s <- 2*(k - 1)
 #' alpha_0 <- matrix(0,m,1)
 #' P_0 <- diag(m)
 #' inventory <- create_inventory(flows = data$flows, stocks = data$stocks)
@@ -36,7 +40,7 @@
 #' out$ncst <- get_nowcast(Xmat = Xmat, s = s, q = q, alpha_0 = alpha_0,
 #' P_0 = P_0, inventory = inventory, target = target, flows = flows,
 #' lambda_mean = out$lambda_mean, phi_mean = out$phi_mean, R_mean = out$R_mean,
-#'Q_mean = out$Q_mean, const = const)
+#' Q_mean = out$Q_mean, const = const)
 #' @export
 #'
 get_nowcast <- function(Xmat, s, q, alpha_0, P_0, inventory, target, flows, lambda_mean, phi_mean, R_mean, Q_mean, const){

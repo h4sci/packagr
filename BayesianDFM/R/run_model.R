@@ -19,8 +19,18 @@
 #' @return A list with the mean and quantiles of the parameters, the forecast and the number of burns, draws and saves.
 #' @import stats
 #' @examples
-#'
-#' out <- run_model(yt,k,q,m,n,Tt,Ttq,const,target)
+#' yt <- as.matrix(t(Xmat))
+#' flows = data$flows
+#' inventory <- create_inventory(flows = data$flows, stocks = data$stocks)
+#' k <- 2
+#' n <- dim(yt)[1]
+#' q <- 1
+#' const <- 0
+#' m <- k*q
+#' Tt <- dim(yt)[2]
+#' Ttq <- Tt-q
+#' target <- c("UKGDPM.YQ")
+#' out <- run_model(yt,k,q,m,n,Tt,Ttq,const,target,inventory,Xmat,flows)
 #' @export
 #'
 run_model <- function(yt,k,q,m,n,Tt,Ttq,const,target,inventory,Xmat,flows){
