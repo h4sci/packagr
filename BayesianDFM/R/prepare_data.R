@@ -14,7 +14,8 @@
 #' @importFrom dplyr left_join
 #' @importFrom zoo na.trim
 #' @examples
-#' Xmat <- prepare_data(flows = data$flows, stocks = data$stocks, inventory, target = target)
+#' Xmat <- prepare_data(flows = data$flows, stocks = data$stocks,
+#' inventory, target = target)
 #' @export
 #'
 prepare_data <- function(flows, stocks, inventory, target){
@@ -54,7 +55,8 @@ prepare_data <- function(flows, stocks, inventory, target){
 
   dfs <- do.call(cbind,dfs)
   colnames(dfs) <- inventory$key
-  dfts <- ts(dfs, start = 1900, frequency = max(sapply(data, function(x) frequency(x))))
+  dfts <- ts(dfs, start = 1900,
+             frequency = max(sapply(data, function(x) frequency(x))))
   dfts <- na.trim(dfts, is.na = "all")
 
   dfts[which(is.na(dfts))] <- 0

@@ -10,8 +10,11 @@
 #' @param const A scalar, where const = 1 for model with intercept, const = 0
 #'   for model without intercept.
 #'
-#' @return A List with: \itemize{ \item betar_all n x np+1 x R-burn matrices of
-#'   coefficients. \item Sigr_all n x n x R-burn matrices of variance covariance
+#' @return A List with:
+#' \itemize{
+#' \item betar_all n x np+1 x R-burn matrices of
+#'   coefficients.
+#' \item Sigr_all n x n x R-burn matrices of variance covariance
 #'   matrices. }
 #' @importFrom MASS mvrnorm
 #' @importFrom MCMCpack riwish
@@ -25,18 +28,19 @@
 #' R <- as.matrix(diag(n)*0.01)
 #' alpha_0 <- matrix(0,m,1)
 #' P_0 <- diag(m)
-#' lambdasim <- matrix(rep(rnorm(n,0,1)*0.1,k), nrow = n, ncol = k, byrow = TRUE)
+#' lambdasim <- matrix(rep(rnorm(n,0,1)*0.1,k),
+#' nrow = n, ncol = k, byrow = TRUE)
 #' diag(lambdasim) <- 1
 #' lambdasim[upper.tri(lambdasim)] <- 0
 #' lambda <- lambdasim
 #' Tt <- dim(yt)[2]
 #' phi <- diag(rnorm(k,0,1))
 #' const <- 0
-#' ft <-  multimoveGibbs(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R)
+#' ft <-  multimove_Gibbs(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R)
 #' param <- BVAR_Jeff(ft,q,0)
 #' @export
 #'
-BVAR_Jeff <- function(Yts,p,const){
+BVAR_Jeff <- function(Yts,p,const) {
 
   # Number of variables
   n <- dim(Yts)[1]
@@ -76,7 +80,7 @@ BVAR_Jeff <- function(Yts,p,const){
   betar_m <- t(matrix(betar,n*p+const,n))
 
 
-  output <- list(FF=betar_m, Q= Sigr)
+  output <- list(FF=betar_m, Q=Sigr)
 
   return(output)
 

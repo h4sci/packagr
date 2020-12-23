@@ -17,7 +17,7 @@
 #' inventory <- create_inventory(flows = data$flows, stocks = data$stocks)
 #' @export
 #'
-create_inventory <- function(flows, stocks){
+create_inventory <- function(flows, stocks) {
 
   inventory <- rbind(data.frame("key" = as.character(names(flows)),
                                 "type" = factor("flow", levels = c("stock","flow")),

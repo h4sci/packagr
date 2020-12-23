@@ -27,5 +27,6 @@ The function conducts a normalization by demeaning and dividing by the
 standard deviation of the individual time series.
 }
 \examples{
-Xmat <- prepare_data(flows = data$flows, stocks = data$stocks, inventory, target = target)
+Xmat <- prepare_data(flows = data$flows, stocks = data$stocks,
+inventory, target = target)
 }

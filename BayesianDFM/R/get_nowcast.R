@@ -85,7 +85,7 @@ get_nowcast <- function(Xmat, s, q, alpha_0, P_0, inventory, target, flows, lamb
   Tt_ext <- dim(yt_ext)[2]
 
   # Draw extended factor conditional on posterior parameters
-  ft_nc <-  multimoveGibbs(yt_ext,phi_mean,Q_mean,lambda_mean,const,Tt_ext,q,alpha_0,P_0,R_mean)
+  ft_nc <-  multimove_Gibbs(yt_ext,phi_mean,Q_mean,lambda_mean,const,Tt_ext,q,alpha_0,P_0,R_mean)
 
   # Make prediction
   X_fit <- lambda_mean %*% ft_nc

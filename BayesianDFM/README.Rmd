@@ -36,12 +36,12 @@ devtools::install_github("h4sci/packagr")
 The following functions are contained in the package:
 
   *BVAR_Jeff
-  *compFstate
-  *drawLam
-  *drawSig
+  *comp_F_state
+  *draw_Lam
+  *draw_Sig
   *get_IC
   *get_nowcast
-  *multimoveGibbs
+  *multimove_Gibbs
   *prepare_data
   *run_model
 

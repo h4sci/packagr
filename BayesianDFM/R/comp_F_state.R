@@ -19,17 +19,18 @@
 #' yt <- as.matrix(t(Xmat))
 #' k <- 2
 #' n <- dim(yt)[1]
-#' lambdasim <- matrix(rep(rnorm(n,0,1)*0.1,k), nrow = n, ncol = k, byrow = TRUE)
+#' lambdasim <- matrix(rep(rnorm(n,0,1)*0.1,k),
+#' nrow = n, ncol = k, byrow = TRUE)
 #' diag(lambdasim) <- 1
 #' lambdasim[upper.tri(lambdasim)] <- 0
 #' lambda <- lambdasim
 #' phi <- diag(rnorm(k,0,1))
 #' Q <- as.matrix(diag(0.1,k))
 #' const <- 0
-#' matcomp <- compFstate(phi,Q,lambda,const)
+#' matcomp <- comp_F_state(phi,Q,lambda,const)
 #' @export
 #'
-compFstate <- function(phi,Q,H,con,n,k){
+comp_F_state <- function(phi,Q,H,con,n,k) {
 
   dim1 <- dim(phi)[1]
   p <- dim(phi)[2]/dim1

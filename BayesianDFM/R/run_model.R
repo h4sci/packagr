@@ -44,7 +44,8 @@ run_model <- function(yt,k,q,m,n,Tt,Ttq,const,target,inventory,Xmat,flows){
 
 # IG distribution
 nu0 <- k + 3 # shape (degrees of freedom) of IG distribution
-s0 <- 100 # Prior for the rate (reciprocal of scale) of IG distribution (1/100=0,01 as benchmark residuals of AR(1) from OLS)
+s0 <- 100 # Prior for the rate (reciprocal of scale)
+# of IG distribution (1/100=0,01 as benchmark residuals of AR(1) from OLS)
 
 # Factor loadings
 lam0 <- matrix(0,k,1) # mean = 0
@@ -55,7 +56,9 @@ alpha_0 <- matrix(0,m,1)
 P_0 <- diag(m)
 
 # Initialize Lambda
-lambdasim <- matrix(rep(rnorm(n,0,1)*0.1,k), nrow = n, ncol = k, byrow = TRUE) # Must be a nxk Vector! # Could replace this with principal components???
+lambdasim <- matrix(rep(rnorm(n,0,1)*0.1,k),
+                    nrow = n, ncol = k, byrow = TRUE)
+# Must be a nxk Vector! # Could replace this with principal components???
 diag(lambdasim) <- 1
 lambdasim[upper.tri(lambdasim)] <- 0
 lambda <- lambdasim
@@ -63,8 +66,10 @@ lambda <- lambdasim
 # VAR coefficient
 #phi <- t(c(0.4)) # if q=1, k=1
 #phi <-  t(c(0.4,0.2)) # if q=2, k=1 etc.
-phi <- diag(rnorm(k,0,1)) # eg. matrix(c(0.2,0,0,0.2),2,2) # vector autoregressive coefficients       # if q=1, k=2
-#betas2 <- matrix(c(0.2,0.01,0.01,0.05),2,2)# vector autoregressive coefficient       # phi2 usw.
+phi <- diag(rnorm(k,0,1)) # eg. matrix(c(0.2,0,0,0.2),2,2)
+# vector autoregressive coefficients       # if q=1, k=2
+#betas2 <- matrix(c(0.2,0.01,0.01,0.05),2,2)# vector autoregressive coefficient
+# phi2 usw.
 
 # Variance-Covariance Matrix Error Terms
 Q <- as.matrix(diag(0.1,k)) # How to choose this? # Assume indepenence of factors
@@ -94,7 +99,7 @@ for(r in seq(1,ndraws)){
   if(r%%100==0){print(r)}
 
   # Draw factor conditional on parameters
-  ft <-  multimoveGibbs(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R)
+  ft <-  multimove_Gibbs(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R)
 
   # Draw (V)AR parameters of factor equation
   param <- BVAR_Jeff(ft,q,0)
@@ -104,9 +109,9 @@ for(r in seq(1,ndraws)){
   # Draw R from inverse gamma
   for(ix in seq(1,n)){
     # Given that errors independent we can draw them equation-by-equation
-    R[ix,ix] <-  drawSig(yt[ix,],lambda[ix,],ft,Ttq,nu0,s0)
+    R[ix,ix] <-  draw_Sig(yt[ix,],lambda[ix,],ft,Ttq,nu0,s0)
 
-    lambda[ix,] <- drawLam(yt[ix,],ft,R[ix,ix],lam0,V_lam)
+    lambda[ix,] <- draw_Lam(yt[ix,],ft,R[ix,ix],lam0,V_lam)
   }
 
   # Set the first value of lambda to 1 (this is not really efficient, but within our context okay to do)

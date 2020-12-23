@@ -27,7 +27,7 @@
 
 #' @export
 #'
-drawSig <- function(yt,lambda,ft,Ttq,nu0,s0){
+draw_Sig <- function(yt,lambda,ft,Ttq,nu0,s0){
 
   nubar <- Ttq/2 + nu0# Posterior shape
   s2bar <- 1/s0 + (yt-lambda%*%ft)%*%t(yt-lambda%*%ft)/2# Posterior scale
