@@ -24,15 +24,8 @@ devtools::install_github("h4sci/packagr")
 
 The following functions are contained in the package:
 
-  - BVAR\_Jeff
-  - compFstate
-  - drawLam
-  - drawSig
-  - get\_IC
-  - get\_nowcast
-  - multimoveGibbs
-  - prepare\_data
-  - run\_model
+*BVAR\_Jeff *compFstate *drawLam *drawSig *get\_IC *get\_nowcast
+*multimoveGibbs *prepare\_data \*run\_model
 
 For further information about the functions, check out the function
 descriptions.
@@ -49,7 +42,7 @@ load("data_UK.Rda")
 
 target <- c("UKGDPM.YQ") # Define target variable
 
-# De-mean & standardize data and bring variables with different frequency in one matrix
+# De-mean & standardize data
 Xmat <- prepare_data(flows = data$flows,
                      stocks = data$stocks,
                      inventory,
@@ -69,7 +62,7 @@ Define the parameters for the model
 ``` r
 k <- 2 # number of states (number of factors)
 
-q <- 1 # lag length for state equation (adjust starting value of phi accordingly)
+q <- 1 # lag length for state equation
 m <- k*q
 
 n <- dim(yt)[1] # Number of variables
