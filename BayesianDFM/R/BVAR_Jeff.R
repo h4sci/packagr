@@ -2,17 +2,17 @@
 #'
 #' \code{create_inventory} constructs companion matrix for VAR(p) model.
 #'
-#' This function draws from the posterior of a VAR(p) model with non-informatibve prior
+#' This function draws from the posterior of a VAR(p) model with non-informative
+#' prior
 #'
 #' @param Yts n x T matrix of data.
 #' @param p the lag lenght of the VAR.
-#' @param const A scalar, where const = 1 for model with intercept, const = 0 for model without intercept.
+#' @param const A scalar, where const = 1 for model with intercept, const = 0
+#'   for model without intercept.
 #'
-#' @return A List with:
-#' \itemize{
-#' \item betar_all n x np+1 x R-burn matrices of coefficients.
-#' \item Sigr_all n x n x R-burn matrices of variance covariance matrices.
-#' }
+#' @return A List with: \itemize{ \item betar_all n x np+1 x R-burn matrices of
+#'   coefficients. \item Sigr_all n x n x R-burn matrices of variance covariance
+#'   matrices. }
 #' @importFrom MASS mvrnorm
 #' @importFrom MCMCpack riwish
 #' @examples

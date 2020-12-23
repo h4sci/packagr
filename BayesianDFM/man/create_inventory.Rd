@@ -16,16 +16,13 @@ A table
 }
 \description{
 \code{create_inventory} constructs an inventory. It calculates the mean,
-standard deviation of the various series and outputs its frequency, type, and name in a table.
+standard deviation of the various series and outputs its frequency, type, and
+name in a table.
 }
 \details{
-The function reads a list of variables that are of class time series. For every list the function looks for the following things:
-\itemize{
-\item name()
-\item frequency()
-\item mean()
-\item sd()
-}
+The function reads a list of variables that are of class time series. For
+every list the function looks for the following things: \itemize{ \item
+name() \item frequency() \item mean() \item sd() }
 }
 \examples{
 inventory <- create_inventory(flows = data$flows, stocks = data$stocks)

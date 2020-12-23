@@ -14,6 +14,7 @@ datastream
 dat_final
 }
 \description{
-A dataset containing of demeaned and normalized relevant indicators for the UK.
+A dataset containing of demeaned and normalized relevant indicators for the
+UK.
 }
 \keyword{datasets}

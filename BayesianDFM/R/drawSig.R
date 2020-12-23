@@ -1,14 +1,17 @@
 #' Draw variance of idiosyncratic components from inverse gamma distribution
 #'
-#' function  draws variance of idiosyncratic components from inverse gamma distribution.
+#' function  draws variance of idiosyncratic components from inverse gamma
+#' distribution.
 #'
 #'
 #' @param yt A matrix of demeaned and standardized time series data.
 #' @param ft A matrix of the factors.
 #' @param lambda A vector of dimension n x k of the factor loadings.
-#' @param Ttq Number of high-frequency periods minus lag length for state equation.
+#' @param Ttq Number of high-frequency periods minus lag length for state
+#'   equation.
 #' @param nu0 shape (degrees of freedom) of IG distribution.
-#' @param s0 Prior for the rate (reciprocal of scale) of IG distribution (1/100=0,01 as benchmark residuals of AR(1) from OLS).
+#' @param s0 Prior for the rate (reciprocal of scale) of IG distribution
+#'   (1/100=0,01 as benchmark residuals of AR(1) from OLS).
 #' @return Matrix R.
 #' @import stats
 #' @examples

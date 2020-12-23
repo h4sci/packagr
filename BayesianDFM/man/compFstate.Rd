@@ -7,13 +7,16 @@
 compFstate(phi, Q, H, con, n, k)
 }
 \arguments{
-\item{phi}{Diagoanl matrix of dimension k x k with vector autoregressive coefficients.}
+\item{phi}{Diagoanl matrix of dimension k x k with vector autoregressive
+coefficients.}
 
 \item{Q}{A matrix of .}
 
-\item{H}{A matrix of lambadas from Multi-Move Gibbs sampler in companion form.}
+\item{H}{A matrix of lambadas from Multi-Move Gibbs sampler in companion
+form.}
 
-\item{con}{A scalar, where con = 1 for model with intercept, con = 0 for model without intercept.}
+\item{con}{A scalar, where con = 1 for model with intercept, con = 0 for
+model without intercept.}
 
 \item{n}{Number of variables.}
 

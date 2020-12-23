@@ -15,7 +15,8 @@ drawLam(yt, ft, R, lam0, V_lam)
 
 \item{lam0}{Matrix of mean of initial factor loadings.}
 
-\item{V_lam}{Diagonal matrix of dimension k of Variance-Covariance matrix of initial factor loadings.}
+\item{V_lam}{Diagonal matrix of dimension k of Variance-Covariance matrix of
+initial factor loadings.}
 }
 \value{
 Element of a vector, coefficient of lambda.
@@ -24,7 +25,8 @@ Element of a vector, coefficient of lambda.
 function that allows to draw from posterior of factor loadings.
 }
 \details{
-The function conducts a normalization by demeaning and dividing by the standard deviation of the individual time series.
+The function conducts a normalization by demeaning and dividing by the
+standard deviation of the individual time series.
 }
 \examples{
 k <- 2

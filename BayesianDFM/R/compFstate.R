@@ -4,10 +4,13 @@
 #'
 #' The function runs inside the Multi-Move Gibbs sampler.
 #'
-#' @param phi Diagoanl matrix of dimension k x k with vector autoregressive coefficients.
+#' @param phi Diagoanl matrix of dimension k x k with vector autoregressive
+#'   coefficients.
 #' @param Q A matrix of .
-#' @param H A matrix of lambadas from Multi-Move Gibbs sampler in companion form.
-#' @param con A scalar, where con = 1 for model with intercept, con = 0 for model without intercept.
+#' @param H A matrix of lambadas from Multi-Move Gibbs sampler in companion
+#'   form.
+#' @param con A scalar, where con = 1 for model with intercept, con = 0 for
+#'   model without intercept.
 #' @param n Number of variables.
 #' @param k Number of states (number of factors).
 #'

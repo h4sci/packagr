@@ -1,8 +1,10 @@
 #' Prepare time series data for usage
 #'
-#' \code{prepare_data} transforms the time series into a usable format for time series analysis.
+#' \code{prepare_data} transforms the time series into a usable format for time
+#' series analysis.
 #'
-#' The function conducts a normalization by demeaning and dividing by the standard deviation of the individual time series.
+#' The function conducts a normalization by demeaning and dividing by the
+#' standard deviation of the individual time series.
 #'
 #' @param inventory Inventory of the corresponding data.
 #' @param target Defines the target variable.

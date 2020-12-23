@@ -13,15 +13,18 @@ run_model(yt, k, q, m, n, Tt, Ttq, const, target, inventory, Xmat, flows)
 
 \item{q}{Lag length for state equation.}
 
-\item{m}{number of states (number of factors) x lag length for state equation (nxq)}
+\item{m}{number of states (number of factors) x lag length for state equation
+(nxq)}
 
 \item{n}{Number of variables}
 
 \item{Tt}{Number of high-frequency periods.}
 
-\item{Ttq}{Number of high-frequency periods minus lag length for state equation}
+\item{Ttq}{Number of high-frequency periods minus lag length for state
+equation}
 
-\item{const}{A scalar, where const = 1 for model with intercept, const = 0 for model without intercept.}
+\item{const}{A scalar, where const = 1 for model with intercept, const = 0
+for model without intercept.}
 
 \item{target}{Defines the target variable.}
 
@@ -32,10 +35,12 @@ run_model(yt, k, q, m, n, Tt, Ttq, const, target, inventory, Xmat, flows)
 \item{flows}{A list of time series variable (flow variables).}
 }
 \value{
-A list with the mean and quantiles of the parameters, the forecast and the number of burns, draws and saves.
+A list with the mean and quantiles of the parameters, the forecast
+and the number of burns, draws and saves.
 }
 \description{
-function extends the data matrix by the forecasting period, draws extended factor conditional on posterior parameters and makes forecast.
+function extends the data matrix by the forecasting period, draws extended
+factor conditional on posterior parameters and makes forecast.
 }
 \examples{
 yt <- as.matrix(t(Xmat))

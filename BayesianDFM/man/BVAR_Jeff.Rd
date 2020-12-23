@@ -11,20 +11,20 @@ BVAR_Jeff(Yts, p, const)
 
 \item{p}{the lag lenght of the VAR.}
 
-\item{const}{A scalar, where const = 1 for model with intercept, const = 0 for model without intercept.}
+\item{const}{A scalar, where const = 1 for model with intercept, const = 0
+for model without intercept.}
 }
 \value{
-A List with:
-\itemize{
-\item betar_all n x np+1 x R-burn matrices of coefficients.
-\item Sigr_all n x n x R-burn matrices of variance covariance matrices.
-}
+A List with: \itemize{ \item betar_all n x np+1 x R-burn matrices of
+coefficients. \item Sigr_all n x n x R-burn matrices of variance covariance
+matrices. }
 }
 \description{
 \code{create_inventory} constructs companion matrix for VAR(p) model.
 }
 \details{
-This function draws from the posterior of a VAR(p) model with non-informatibve prior
+This function draws from the posterior of a VAR(p) model with non-informative
+prior
 }
 \examples{
 yt <- as.matrix(t(Xmat))

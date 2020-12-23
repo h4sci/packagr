@@ -2,13 +2,15 @@
 #'
 #' function that allows to draw from posterior of factor loadings.
 #'
-#' The function conducts a normalization by demeaning and dividing by the standard deviation of the individual time series.
+#' The function conducts a normalization by demeaning and dividing by the
+#' standard deviation of the individual time series.
 #'
 #' @param yt A matrix of demeaned and standardized time series data.
 #' @param ft A matrix of the factors.
 #' @param R Diagonal matrix of dimension n of idiosyncratic component.
 #' @param lam0 Matrix of mean of initial factor loadings.
-#' @param V_lam Diagonal matrix of dimension k of Variance-Covariance matrix of initial factor loadings.
+#' @param V_lam Diagonal matrix of dimension k of Variance-Covariance matrix of
+#'   initial factor loadings.
 #'
 #' @return Element of a vector, coefficient of lambda.
 #' @importFrom MASS mvrnorm

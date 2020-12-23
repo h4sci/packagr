@@ -1,16 +1,22 @@
 #' Draws factor conditional on parameters
 #'
-#' The Multi-Move Gibbs sampler applies the kalman filter by forward and backwards filtering.
+#' The Multi-Move Gibbs sampler applies the kalman filter by forward and
+#' backwards filtering.
 #'
 #' @inheritParams compFstate
-#' @param phi Diagoanl matrix of dimension k x k with vector autoregressive coefficients.
+#' @param phi Diagoanl matrix of dimension k x k with vector autoregressive
+#'   coefficients.
 #' @param lambda A vector of dimension n x k of the factor loadings.
-#' @param const A scalar, where const = 1 for model with intercept, const = 0 for model without intercept.
+#' @param const A scalar, where const = 1 for model with intercept, const = 0
+#'   for model without intercept.
 #' @param yt A matrix of demeaned and standardized time series data.
 #' @param Tt Number of high-frequency periods.
-#' @param q lag length for state equation (adjust starting value of phi accordingly).
-#' @param alpha_0 Vector of dimension m x 1 (Initial conditions for Kalman filter).
-#' @param P_0 Diagonal matrix of dimension m (Initial conditions for Kalman filter).
+#' @param q lag length for state equation (adjust starting value of phi
+#'   accordingly).
+#' @param alpha_0 Vector of dimension m x 1 (Initial conditions for Kalman
+#'   filter).
+#' @param P_0 Diagonal matrix of dimension m (Initial conditions for Kalman
+#'   filter).
 #' @param R Diagonal matrix of dimension n of idiosyncratic component.
 #' @importFrom MASS mvrnorm
 #' @return A Vector of factors conditional parameters.

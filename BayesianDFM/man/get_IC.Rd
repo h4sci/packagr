@@ -10,19 +10,20 @@ get_IC(Xmat)
 \item{Xmat}{A data set containing all the time series.}
 }
 \value{
-A List:
-\itemize{
-\item ER_number Optimal number of factors according to Eigenvalue Ratio Test.
-\item GR_number Optimal number of factors according to Growth Ratio Test.
-}
+A List: \itemize{ \item ER_number Optimal number of factors according
+to Eigenvalue Ratio Test. \item GR_number Optimal number of factors
+according to Growth Ratio Test. }
 }
 \description{
-\code{create_inventory} constructs the Eigenvalue Ratio Test and Growth Ratio Test according to Ahn, Horenstein (2013), page 1207
+\code{create_inventory} constructs the Eigenvalue Ratio Test and Growth Ratio
+Test according to Ahn, Horenstein (2013), page 1207
 }
 \details{
-The function calculates the principal components of the data set. It creates a screeplot of the principal components.
-Further, it calculates the optimal number of factors of the factor model according to the Eigenvalue Ratio
-Test and Growth Ratio Test of Ahn, Horenstein (2013), page 1207. The maximam number of factors is set to 10.
+The function calculates the principal components of the data set. It creates
+a screeplot of the principal components. Further, it calculates the optimal
+number of factors of the factor model according to the Eigenvalue Ratio Test
+and Growth Ratio Test of Ahn, Horenstein (2013), page 1207. The maximam
+number of factors is set to 10.
 }
 \examples{
 IC <- get_IC(Xmat)

@@ -9,21 +9,26 @@ multimoveGibbs(yt, phi, Q, lambda, const, Tt, q, alpha_0, P_0, R)
 \arguments{
 \item{yt}{A matrix of demeaned and standardized time series data.}
 
-\item{phi}{Diagoanl matrix of dimension k x k with vector autoregressive coefficients.}
+\item{phi}{Diagoanl matrix of dimension k x k with vector autoregressive
+coefficients.}
 
 \item{Q}{A matrix of .}
 
 \item{lambda}{A vector of dimension n x k of the factor loadings.}
 
-\item{const}{A scalar, where const = 1 for model with intercept, const = 0 for model without intercept.}
+\item{const}{A scalar, where const = 1 for model with intercept, const = 0
+for model without intercept.}
 
 \item{Tt}{Number of high-frequency periods.}
 
-\item{q}{lag length for state equation (adjust starting value of phi accordingly).}
+\item{q}{lag length for state equation (adjust starting value of phi
+accordingly).}
 
-\item{alpha_0}{Vector of dimension m x 1 (Initial conditions for Kalman filter).}
+\item{alpha_0}{Vector of dimension m x 1 (Initial conditions for Kalman
+filter).}
 
-\item{P_0}{Diagonal matrix of dimension m (Initial conditions for Kalman filter).}
+\item{P_0}{Diagonal matrix of dimension m (Initial conditions for Kalman
+filter).}
 
 \item{R}{Diagonal matrix of dimension n of idiosyncratic component.}
 }
@@ -31,7 +36,8 @@ multimoveGibbs(yt, phi, Q, lambda, const, Tt, q, alpha_0, P_0, R)
 A Vector of factors conditional parameters.
 }
 \description{
-The Multi-Move Gibbs sampler applies the kalman filter by forward and backwards filtering.
+The Multi-Move Gibbs sampler applies the kalman filter by forward and
+backwards filtering.
 }
 \examples{
 q <- 1

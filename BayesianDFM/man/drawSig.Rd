@@ -13,17 +13,20 @@ drawSig(yt, lambda, ft, Ttq, nu0, s0)
 
 \item{ft}{A matrix of the factors.}
 
-\item{Ttq}{Number of high-frequency periods minus lag length for state equation.}
+\item{Ttq}{Number of high-frequency periods minus lag length for state
+equation.}
 
 \item{nu0}{shape (degrees of freedom) of IG distribution.}
 
-\item{s0}{Prior for the rate (reciprocal of scale) of IG distribution (1/100=0,01 as benchmark residuals of AR(1) from OLS).}
+\item{s0}{Prior for the rate (reciprocal of scale) of IG distribution
+(1/100=0,01 as benchmark residuals of AR(1) from OLS).}
 }
 \value{
 Matrix R.
 }
 \description{
-function  draws variance of idiosyncratic components from inverse gamma distribution.
+function  draws variance of idiosyncratic components from inverse gamma
+distribution.
 }
 \examples{
 yt <- as.matrix(t(Xmat))

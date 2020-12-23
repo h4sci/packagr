@@ -1,7 +1,8 @@
 
 # First steps creating an R package ---------------------------------------
 
-# I followed https://tinyheero.github.io/jekyll/update/2015/07/26/making-your-first-R-package.html
+# I followed
+# https://tinyheero.github.io/jekyll/update/2015/07/26/making-your-first-R-package.html
 
 # Install packages
   install.packages(c("devtools", "roxygen2", "testthat", "knitr"))
@@ -38,7 +39,7 @@
 
   #> Adding dplyr to Imports
   #> Refer to functions with dplyr::fun()
-  #usethis::use_package("data.table", "Suggests")
+  # usethis::use_package("data.table", "Suggests")
   #> Use requireNamespace("data.table", quietly = TRUE) to test if package is 
   #>  installed, then use data.table::fun() to refer to functions.
   
@@ -51,7 +52,8 @@
   # Each time you add new documentation to your R function, 
   # you need to run devtools::document() again to re-generate the .Rd files.
   
-# Create some sample data object and save it in data folder and inst/extdata to provide data code
+# Create some sample data object and save it in data folder and inst/extdata to
+# provide data code
   x <- c(1:10)
   usethis::use_data(x)
   # How to call this data:
@@ -113,7 +115,8 @@
   
   # make basic check whether the package works
   check() # includes the command test() that checks also your own created tests
-  # devtools::check_man() # if problems with documentation instead of always using check
+  # devtools::check_man() # if problems with documentation instead of always
+  # using check
   
   library("BayesianDFM")
   
@@ -143,7 +146,8 @@
   #‘qpdf’ is needed for checks on size reduction of PDFs
   
 # Solution:
-  # Install Rtools (is not available as a package for R 3.6, but can be downloaded from website (Rtools40))
+  # Install Rtools (is not available as a package for R 3.6, but can be
+  # downloaded from website (Rtools40))
   
   # Questions:
   # How do I install it in the package(since it is not a regualr package)?
@@ -158,7 +162,8 @@
   # Add sample data
   # Create read me content for git
   # Add correct contact information into description
-  # Add at all functions in the functions the package name and :: or importFrom nameofpackage nameoffunction
+  # Add at all functions in the functions the package name and :: or importFrom
+  # nameofpackage nameoffunction
   # Creating Vignette content
   # Correct read in of data files
   

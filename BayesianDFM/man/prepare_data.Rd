@@ -19,10 +19,12 @@ prepare_data(flows, stocks, inventory, target)
 A dataframe
 }
 \description{
-\code{prepare_data} transforms the time series into a usable format for time series analysis.
+\code{prepare_data} transforms the time series into a usable format for time
+series analysis.
 }
 \details{
-The function conducts a normalization by demeaning and dividing by the standard deviation of the individual time series.
+The function conducts a normalization by demeaning and dividing by the
+standard deviation of the individual time series.
 }
 \examples{
 Xmat <- prepare_data(flows = data$flows, stocks = data$stocks, inventory, target = target)

@@ -32,7 +32,6 @@ source("code/functions_dfm_UK.R")
 # IMPORT DATA -------------------------------------------------------------
 
 # load data table created in read_data_UK.R
-#load("code/out/data_UK.Rda")
 load("code/out/data_UK.Rda")
 
 

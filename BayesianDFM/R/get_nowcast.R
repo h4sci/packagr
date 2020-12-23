@@ -1,21 +1,28 @@
 #' Get nowcast from the bayesian DFM
 #'
-#' function  extends the data matrix by the forecasting period, draw extended factor conditional on posterior parameters and makes forecast.
+#' function  extends the data matrix by the forecasting period, draw extended
+#' factor conditional on posterior parameters and makes forecast.
 #'
 #'
 #' @param Xmat Demeaned and standardized matrix of time series data.
 #' @param s Number of periods for aggregation rule.
 #' @param q Lag length for state equation.
-#' @param alpha_0 Vector of dimension m x 1 (Initial conditions for Kalman filter).
-#' @param P_0 Diagonal matrix of dimension m (Initial conditions for Kalman filter).
+#' @param alpha_0 Vector of dimension m x 1 (Initial conditions for Kalman
+#'   filter).
+#' @param P_0 Diagonal matrix of dimension m (Initial conditions for Kalman
+#'   filter).
 #' @param inventory Inventory of the corresponding data.
 #' @param target Defines the target variable.
 #' @param flows A list of time series variable (flow variables).
-#' @param lambda_mean A vector of dimension n x k of the posterior mean factor loadings.
-#' @param phi_mean Diagonal matrix of dimension k x k with vector of posterior mean autoregressive coefficients.
-#' @param R_mean Diagonal matrix of dimension n of posterior mean idiosyncratic component.
+#' @param lambda_mean A vector of dimension n x k of the posterior mean factor
+#'   loadings.
+#' @param phi_mean Diagonal matrix of dimension k x k with vector of posterior
+#'   mean autoregressive coefficients.
+#' @param R_mean Diagonal matrix of dimension n of posterior mean idiosyncratic
+#'   component.
 #' @param Q_mean matrices of posterior mean variance covariance matrices.
-#' @param const A scalar, where const = 1 for model with intercept, const = 0 for model without intercept.
+#' @param const A scalar, where const = 1 for model with intercept, const = 0
+#'   for model without intercept.
 #'
 #' @return A time series of the target variable including forecast.
 #' @import stats

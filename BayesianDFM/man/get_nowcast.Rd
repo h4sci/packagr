@@ -27,9 +27,11 @@ get_nowcast(
 
 \item{q}{Lag length for state equation.}
 
-\item{alpha_0}{Vector of dimension m x 1 (Initial conditions for Kalman filter).}
+\item{alpha_0}{Vector of dimension m x 1 (Initial conditions for Kalman
+filter).}
 
-\item{P_0}{Diagonal matrix of dimension m (Initial conditions for Kalman filter).}
+\item{P_0}{Diagonal matrix of dimension m (Initial conditions for Kalman
+filter).}
 
 \item{inventory}{Inventory of the corresponding data.}
 
@@ -37,21 +39,26 @@ get_nowcast(
 
 \item{flows}{A list of time series variable (flow variables).}
 
-\item{lambda_mean}{A vector of dimension n x k of the posterior mean factor loadings.}
+\item{lambda_mean}{A vector of dimension n x k of the posterior mean factor
+loadings.}
 
-\item{phi_mean}{Diagonal matrix of dimension k x k with vector of posterior mean autoregressive coefficients.}
+\item{phi_mean}{Diagonal matrix of dimension k x k with vector of posterior
+mean autoregressive coefficients.}
 
-\item{R_mean}{Diagonal matrix of dimension n of posterior mean idiosyncratic component.}
+\item{R_mean}{Diagonal matrix of dimension n of posterior mean idiosyncratic
+component.}
 
 \item{Q_mean}{matrices of posterior mean variance covariance matrices.}
 
-\item{const}{A scalar, where const = 1 for model with intercept, const = 0 for model without intercept.}
+\item{const}{A scalar, where const = 1 for model with intercept, const = 0
+for model without intercept.}
 }
 \value{
 A time series of the target variable including forecast.
 }
 \description{
-function  extends the data matrix by the forecasting period, draw extended factor conditional on posterior parameters and makes forecast.
+function  extends the data matrix by the forecasting period, draw extended
+factor conditional on posterior parameters and makes forecast.
 }
 \examples{
 yt <- as.matrix(t(Xmat))

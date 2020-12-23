@@ -1,22 +1,27 @@
 #' Get nowcast from the bayesian DFM
 #'
-#' function extends the data matrix by the forecasting period, draws extended factor conditional on posterior parameters and makes forecast.
+#' function extends the data matrix by the forecasting period, draws extended
+#' factor conditional on posterior parameters and makes forecast.
 #'
 #'
 #' @param yt A matrix of demeaned and standardized time series data.
 #' @param k Number of states (number of factors)
 #' @param q Lag length for state equation.
-#' @param m number of states (number of factors) x lag length for state equation (nxq)
+#' @param m number of states (number of factors) x lag length for state equation
+#'   (nxq)
 #' @param n Number of variables
 #' @param Tt Number of high-frequency periods.
-#' @param Ttq Number of high-frequency periods minus lag length for state equation
-#' @param const A scalar, where const = 1 for model with intercept, const = 0 for model without intercept.
+#' @param Ttq Number of high-frequency periods minus lag length for state
+#'   equation
+#' @param const A scalar, where const = 1 for model with intercept, const = 0
+#'   for model without intercept.
 #' @param target Defines the target variable.
 #' @param inventory Inventory of the corresponding data.
 #' @param Xmat A data set containing all the time series.
 #' @param flows A list of time series variable (flow variables).
 #'
-#' @return A list with the mean and quantiles of the parameters, the forecast and the number of burns, draws and saves.
+#' @return A list with the mean and quantiles of the parameters, the forecast
+#'   and the number of burns, draws and saves.
 #' @import stats
 #' @examples
 #' yt <- as.matrix(t(Xmat))
