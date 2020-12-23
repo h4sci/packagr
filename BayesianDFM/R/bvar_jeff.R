@@ -36,11 +36,11 @@
 #' Tt <- dim(yt)[2]
 #' phi <- diag(rnorm(k,0,1))
 #' const <- 0
-#' ft <-  multimove_Gibbs(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R)
-#' param <- BVAR_Jeff(ft,q,0)
+#' ft <-  multimove_gibbs(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R)
+#' param <- bvar_jeff(ft,q,0)
 #' @export
 #'
-BVAR_Jeff <- function(Yts,p,const) {
+bvar_jeff <- function(Yts,p,const) {
 
   # Number of variables
   n <- dim(Yts)[1]

@@ -2,7 +2,8 @@
 # First steps creating an R package ---------------------------------------
 
 # I followed
-# https://tinyheero.github.io/jekyll/update/2015/07/26/making-your-first-R-package.html
+# https://tinyheero.github.io/
+# jekyll/update/2015/07/26/making-your-first-R-package.html
 
 # Install packages
   install.packages(c("devtools", "roxygen2", "testthat", "knitr"))

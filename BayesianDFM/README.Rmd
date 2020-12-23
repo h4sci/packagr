@@ -35,13 +35,13 @@ devtools::install_github("h4sci/packagr")
 
 The following functions are contained in the package:
 
-  *BVAR_Jeff
-  *comp_F_state
-  *draw_Lam
-  *draw_Sig
-  *get_IC
+  *bvar_jeff
+  *comp_f_state
+  *draw_lam
+  *draw_sig
+  *get_ic
   *get_nowcast
-  *multimove_Gibbs
+  *multimove_gibbs
   *prepare_data
   *run_model
 
@@ -74,7 +74,7 @@ yt <- as.matrix(t(Xmat))
 Make a in-sample evaluation of the optimal number of factors
 
 ```{r, eval = FALSE}
-IC <- get_IC(Xmat) # Check information criteria
+IC <- get_ic(Xmat) # Check information criteria
 
 ```
 

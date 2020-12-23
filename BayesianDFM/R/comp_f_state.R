@@ -27,10 +27,10 @@
 #' phi <- diag(rnorm(k,0,1))
 #' Q <- as.matrix(diag(0.1,k))
 #' const <- 0
-#' matcomp <- comp_F_state(phi,Q,lambda,const)
+#' matcomp <- comp_f_state(phi,Q,lambda,const)
 #' @export
 #'
-comp_F_state <- function(phi,Q,H,con,n,k) {
+comp_f_state <- function(phi,Q,H,con,n,k) {
 
   dim1 <- dim(phi)[1]
   p <- dim(phi)[2]/dim1

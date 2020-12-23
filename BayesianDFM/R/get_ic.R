@@ -18,10 +18,10 @@
 #' @import stats
 #' @importFrom grDevices dev.off
 #' @examples
-#' IC <- get_IC(Xmat)
+#' IC <- get_ic(Xmat)
 #' @export
 #'
-get_IC <- function(Xmat){
+get_ic <- function(Xmat){
 
   IC <- list()
   #  See Ahn, Horenstein (2013) - Eigenvalue Ratio Test for the Number of Factors, page 1207

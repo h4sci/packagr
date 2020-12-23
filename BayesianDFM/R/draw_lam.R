@@ -20,7 +20,7 @@
 #' V_lam <- diag(k)
 #' @export
 #'
-draw_Lam <- function(yt,ft,R,lam0,V_lam){
+draw_lam <- function(yt,ft,R,lam0,V_lam){
 
   # This function is suited for equation-by-equation loop
   D_lam <- solve(ft%*%t(ft)/R + solve(V_lam))

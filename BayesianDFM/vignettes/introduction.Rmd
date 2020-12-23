@@ -169,7 +169,7 @@ load("data_UK.Rda")
 
 target <- c("UKGDPM.YQ") # Define target variable
 
-# De-mean & standardize data and bring variables with different frequency in one matrix
+# De-mean & standardize data
 Xmat <- prepare_data(flows = data$flows,
                      stocks = data$stocks,
                      inventory,

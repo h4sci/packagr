@@ -18,7 +18,7 @@
 #' inventory, target = target)
 #' @export
 #'
-prepare_data <- function(flows, stocks, inventory, target){
+prepare_data <- function(flows, stocks, inventory, target) {
 
   data <- c(flows, stocks)
 

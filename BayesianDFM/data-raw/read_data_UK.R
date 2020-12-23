@@ -19,35 +19,35 @@ library(xts)
 # FUNCTIONS ---------------------------------------------------------------
 
 # datastream request function
-ds2ts <- function(dskeys, wrn = TRUE, pwfile = "ds.txt"){
-  
+ds2ts <- function(dskeys, wrn = TRUE, pwfile = "ds.txt") {
+
   library(DatastreamDSWS2R)
   creds <- unlist(strsplit(scan(pwfile, quiet = T, what = "")[3], ":", fixed = T))
   mydsws <- dsws$new(username = creds[4], password = creds[5])
-  
-  out <- lapply(dskeys, function(x) mydsws$timeSeriesRequest(instrument = x, 
+
+  out <- lapply(dskeys, function(x) mydsws$timeSeriesRequest(instrument = x,
                                                              startDate = "1960-01-01",
                                                              endDate = "3Y"))
   names(out) <- dskeys
-  
+
   return(out)
 }
 
-daily2weekly <- function(x){
-  
-  idx <- plyr::round_any(x = as.numeric(format(time(x), "%Y")) + 
-                           (as.numeric(format(time(x), "%m"))-1)/12 + 
+daily2weekly <- function(x) {
+
+  idx <- plyr::round_any(x = as.numeric(format(time(x), "%Y")) +
+                           (as.numeric(format(time(x), "%m"))-1)/12 +
                            as.numeric(format(time(x), "%d"))/365,
                          accuracy = 1/48,
                          f = floor)
-  
+
   ts_weekly <- as.ts(aggregate(x = x,
                                by = idx,
                                FUN = mean,
                                na.rm=T))
   ts_weekly[is.nan(ts_weekly)] <- NA
   ts_weekly
-  
+
 }
 
 
@@ -70,22 +70,22 @@ ts_ds <- ds2ts(keys_ds)
 
 out_ts <- list()
 ts_ds_adj <- lapply(names(ts_ds), function(ix){
-  
+
   out_raw <- ts_ds[[ix]]
   freq <- metadata[which(metadata$keys == ix),"frequency"]
-  
+
   if(freq == 4){
-    
+
     out_ts <- ts(out_raw,
                  start = as.numeric(as.yearqtr(time(out_raw))[1]),
                  frequency = freq)
-    
+
   } else if(freq == 12){
 
     out_ts <- ts(out_raw,
                  start = as.numeric(as.yearmon(time(out_raw))[1]),
                  frequency = freq)
-    
+
   } else if(freq == 365){
     # Aggregate Daily to Monthly Variables
     ts <- xts(out_raw, as.Date(time(out_raw)), "%Y-%m-%d")
@@ -93,9 +93,9 @@ ts_ds_adj <- lapply(names(ts_ds), function(ix){
     out_ts <- ts(ts_m,
                  start = as.numeric(as.yearmon(time(ts_m))[1]),
                  frequency = freq)
-    
+
   # } else if(freq == 48){
-  # 
+  #
   #   out_ts <- zoo(x = as.vector(out_raw), order.by = time(out_raw))
   #   idx <- plyr::round_any(x = as.numeric(format(time(out_raw), "%Y")) +
   #                            (as.numeric(format(time(out_raw), "%m"))-1)/12 +
@@ -108,9 +108,9 @@ ts_ds_adj <- lapply(names(ts_ds), function(ix){
   #                             na.rm=T))
 
   }
-  
+
   return(out_ts)
-  
+
 }); names(ts_ds_adj) <- names(ts_ds)
 
 

@@ -47,7 +47,7 @@ target <- c("UKGDPM.YQ")
 inventory <- create_inventory(flows = data$flows, stocks = data$stocks)
 save(inventory, file = "code/out/inventory_UK.Rda")
 
-# De-mean & standardize data and bring variables with different frequency in one matrix
+# De-mean & standardize data
 Xmat <- prepare_data(flows = data$flows,
                      stocks = data$stocks,
                      inventory,
@@ -81,7 +81,7 @@ dev.off()
 # MODEL SPECIFICATION -----------------------------------------------------
 
 # Check information criteria
-IC <- get_IC(Xmat)
+IC <- get_ic(Xmat)
 
 #factors <- list()
 #for (k in 2:10){

@@ -79,7 +79,7 @@ prepare_data <- function(flows, stocks, inventory, target) {
 
 # Information Criterion --------------------------------------------------------
 
-get_IC <- function(Xmat) {
+get_ic <- function(Xmat) {
   IC <- list()
   #  See Ahn, Horenstein (2013) - Eigenvalue Ratio Test for the Number of Factors, page 1207
   #Xmat_spline <- na.approx(Xmat, na.rm = TRUE)
@@ -111,7 +111,7 @@ get_IC <- function(Xmat) {
 
 # function that computes the companion form of our VAR(p) model for the state space model
 
-comp_F_state <- function(phi,Q,H,con) {
+comp_f_state <- function(phi,Q,H,con) {
   # This function constructs companion matrix for VAR(p) model
   # input: - n x n*p + 1 matrix of coefficients betam
   #        -  scalar const, where const=1 model with intercept, const=0 model without intercept
@@ -141,7 +141,7 @@ comp_F_state <- function(phi,Q,H,con) {
 # Multi-Move Gibbs sampler ------------------------------------------------
 
 # function that implements the Gibbs sampler outlined in the lecture(forward filtering and backward sampling)
-multimove_Gibbs <- function(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R) {
+multimove_gibbs <- function(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R) {
 
   k <- dim(Q)[1]
 
@@ -157,7 +157,7 @@ multimove_Gibbs <- function(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R) {
   P_u[[1]] <- P_0
 
   # Get matrices in companion form
-  matcomp <- comp_F_state(phi,Q,lambda,const)
+  matcomp <- comp_g_state(phi,Q,lambda,const)
   FFcom <- matcomp$phicom
   Qcom <- matcomp$Qcom
   Hcom <- matcomp$Hcom
@@ -203,7 +203,7 @@ multimove_Gibbs <- function(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R) {
 
 # VAR(p) Model with non-informative prior ---------------------------------
 
-BVAR_Jeff <- function(Yts,p,const) {
+bvar_jeff <- function(Yts,p,const) {
   # This function draws from the posterior of a VAR(p) model with non-informative prior
 
   # input: - Yts n x T matrix of data
@@ -268,7 +268,7 @@ BVAR_Jeff <- function(Yts,p,const) {
 # Function to draw factor loadings ----------------------------------------
 
 # Write function that allows to draw from posterior of factor loadings
-drawLam <- function(yt,ft,R,lam0,V_lam) {
+draw_lam <- function(yt,ft,R,lam0,V_lam) {
   # Draw factor loadings from their conditional posterior
   #(see Exercise 2 and see also lecture slide "Gibbs Sampling in a Regression Model")
   # This function is suited for equation-by-equation loop
@@ -285,7 +285,7 @@ drawLam <- function(yt,ft,R,lam0,V_lam) {
 
 # Function to draw variances of idiosyncratic components ------------------
 
-drawSig <- function(yt,lambda,ft,Ttq,nu0,s0) {
+draw_sig <- function(yt,lambda,ft,Ttq,nu0,s0) {
   # Draw variance of idiosyncratic components from inverse gamma distribution
   nubar <- Ttq/2 + nu0# Posterior shape
   s2bar <- 1/s0 + (yt-lambda%*%ft)%*%t(yt-lambda%*%ft)/2# Posterior scale
@@ -348,7 +348,7 @@ get_nowcast <- function(Xmat, s, q, alpha_0, P_0, inventory,
   Tt_ext <- dim(yt_ext)[2]
 
   # Draw extended factor conditional on posterior parameters
-  ft_nc <-  multimove_Gibbs(yt_ext,phi_mean,Q_mean,lambda_mean,
+  ft_nc <-  multimove_gibbs(yt_ext,phi_mean,Q_mean,lambda_mean,
                             const,Tt_ext,q,alpha_0,P_0,R_mean)
 
   # Make prediction
@@ -432,7 +432,7 @@ for(r in seq(1,ndraws)){
   if(r%%100==0){print(r)}
 
   # Draw factor conditional on parameters
-  ft <-  multimove_Gibbs(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R)
+  ft <-  multimove_gibbs(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R)
 
   # Draw (V)AR parameters of factor equation
   param <- BVAR_Jeff(ft,q,0)
@@ -442,9 +442,9 @@ for(r in seq(1,ndraws)){
   # Draw R from inverse gamma
   for(ix in seq(1,n)){
     # Given that errors independent we can draw them equation-by-equation
-    R[ix,ix] <-  draw_Sig(yt[ix,],lambda[ix,],ft,Ttq,nu0,s0)
+    R[ix,ix] <-  draw_sig(yt[ix,],lambda[ix,],ft,Ttq,nu0,s0)
 
-    lambda[ix,] <- draw_Lam(yt[ix,],ft,R[ix,ix],lam0,V_lam)
+    lambda[ix,] <- draw_lam(yt[ix,],ft,R[ix,ix],lam0,V_lam)
   }
 
   # Set the first value of lambda to 1

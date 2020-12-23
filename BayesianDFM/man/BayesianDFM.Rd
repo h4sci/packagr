@@ -11,14 +11,15 @@ Dynamic Factor Model.
 \section{BayesianDFM functions}{
 
 \itemize{
-\item BVAR_Jeff
-\item compFstate
-\item drawLam
-\item drawSig
-\item get_IC
+\item bvar_jeff
+\item comp_f_state
+\item draw_lam
+\item draw_sig
+\item get_ic
 \item get_nowcast
-\item multimoveGibbs
+\item multimove_gibbs
 \item prepare_data
-\item run_model }
+\item run_model
+}
 }
 

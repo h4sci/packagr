@@ -38,7 +38,7 @@
 #' out <- run_model(yt,k,q,m,n,Tt,Ttq,const,target,inventory,Xmat,flows)
 #' @export
 #'
-run_model <- function(yt,k,q,m,n,Tt,Ttq,const,target,inventory,Xmat,flows){
+run_model <- function(yt, k, q, m, n, Tt, Ttq, const, target, inventory, Xmat, flows){
 
 ###### PRIORS
 
@@ -99,19 +99,19 @@ for(r in seq(1,ndraws)){
   if(r%%100==0){print(r)}
 
   # Draw factor conditional on parameters
-  ft <-  multimove_Gibbs(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R)
+  ft <-  multimove_gibbs(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R)
 
   # Draw (V)AR parameters of factor equation
-  param <- BVAR_Jeff(ft,q,0)
+  param <- bvar_jeff(ft,q,0)
   phi <- param$FF
   Q <- param$Q
 
   # Draw R from inverse gamma
   for(ix in seq(1,n)){
     # Given that errors independent we can draw them equation-by-equation
-    R[ix,ix] <-  draw_Sig(yt[ix,],lambda[ix,],ft,Ttq,nu0,s0)
+    R[ix,ix] <-  draw_sig(yt[ix,],lambda[ix,],ft,Ttq,nu0,s0)
 
-    lambda[ix,] <- draw_Lam(yt[ix,],ft,R[ix,ix],lam0,V_lam)
+    lambda[ix,] <- draw_lam(yt[ix,],ft,R[ix,ix],lam0,V_lam)
   }
 
   # Set the first value of lambda to 1 (this is not really efficient, but within our context okay to do)

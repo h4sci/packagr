@@ -3,7 +3,7 @@
 #' The Multi-Move Gibbs sampler applies the kalman filter by forward and
 #' backwards filtering.
 #'
-#' @inheritParams comp_F_state
+#' @inheritParams comp_f_state
 #' @param phi Diagoanl matrix of dimension k x k with vector autoregressive
 #'   coefficients.
 #' @param lambda A vector of dimension n x k of the factor loadings.
@@ -38,10 +38,10 @@
 #' lambdasim[upper.tri(lambdasim)] <- 0
 #' lambda <- lambdasim
 #' Q <- as.matrix(diag(0.1,k))
-#' matcomp <- comp_F_state(phi,Q,lambda,const)
+#' matcomp <- comp_f_state(phi,Q,lambda,const)
 #' @export
 #'
-multimove_Gibbs <- function(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R){
+multimove_gibbs <- function(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R){
 
   k <- dim(Q)[1]
 
@@ -57,7 +57,7 @@ multimove_Gibbs <- function(yt,phi,Q,lambda,const,Tt,q,alpha_0,P_0,R){
   P_u[[1]] <- P_0
 
   # Get matrices in companion form
-  matcomp <- comp_F_state(phi,Q,lambda,const)
+  matcomp <- comp_f_state(phi,Q,lambda,const)
   FFcom <- matcomp$phicom
   Qcom <- matcomp$Qcom
   Hcom <- matcomp$Hcom
