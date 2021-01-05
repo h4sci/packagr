@@ -56,6 +56,9 @@
   # How to call this data:
   #system.file("extdata", "x.R", package = "myfirstpackage")
 
+# create correct rda files of output data
+  use_data(dat_final,data,inventory,metadata, out, Xmat)
+  
 # Create basic read me file for git
   use_readme_rmd()
 
@@ -125,25 +128,19 @@
   # Render your read me file
   build_readme()
 
-
   # install the package from git
-  install.packages("devtools")
   devtools::install_github("philippkronenberg/BayesianDFM")
 
 
-  # create correct rda files of output data
-  #use_data(dat_final,data,inventory,metadata)
-
-  # Create package website with pkgdown():
-    # Run once to configure your package to use pkgdown
-    usethis::use_pkgdown()
-  # Use pkgdown to update your website:
-
-    # Run to build the website
-    pkgdown::build_site()
-
 # Open Issues -------------------------------------------------------------
 
+    # Create package website with pkgdown():
+    # Run once to configure your package to use pkgdown
+    usethis::use_pkgdown()
+    
+  # Use pkgdown to update your website:
+  pkgdown::build_site()
+  
 # Warnings:
   #> checking data for ASCII and uncompressed saves ... OK
   #WARNING
@@ -173,7 +170,5 @@
 
   #ToDo
 
-# Add automated testing (github actions)
+# Add automated testing (github actions), superlinter?
 # Create package website with pkgdown()
-
-
