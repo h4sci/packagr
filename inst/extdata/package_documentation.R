@@ -129,7 +129,7 @@
   build_readme()
 
   # install the package from git
-  devtools::install_github("philippkronenberg/BayesianDFM")
+  devtools::install_github("h4sci/packagr")
 
 
 # Open Issues -------------------------------------------------------------
